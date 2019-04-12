@@ -3,12 +3,12 @@ package com.codeclan.hotelserver.hotelserver.models.people;
 import javax.persistence.*;
 
 @Entity
-@Table(name="guests")
-public class Guest {
+@Table(name="staff")
+public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long guestID;
+    private Long staffID;
 
     @Column
     private String firstName;
@@ -31,7 +31,10 @@ public class Guest {
     @Column
     private String phone;
 
-    public Guest(String firstName, String lastName, String addressLine1, String town, String postCode, String email, String phone) {
+    @Column
+    private String position;
+
+    public Staff(String firstName, String lastName, String addressLine1, String town, String postCode, String email, String phone, String position) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.addressLine1 = addressLine1;
@@ -39,17 +42,18 @@ public class Guest {
         this.postCode = postCode;
         this.email = email;
         this.phone = phone;
+        this.position = position;
     }
 
-    public Guest() {
+    public Staff() {
     }
 
-    public Long getGuestID() {
-        return guestID;
+    public Long getStaffID() {
+        return staffID;
     }
 
-    public void setGuestID(Long guestID) {
-        this.guestID = guestID;
+    public void setStaffID(Long staffID) {
+        this.staffID = staffID;
     }
 
     public String getFirstName() {
@@ -106,5 +110,13 @@ public class Guest {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

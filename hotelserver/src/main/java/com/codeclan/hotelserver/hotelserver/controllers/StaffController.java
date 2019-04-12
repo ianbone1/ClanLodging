@@ -1,7 +1,7 @@
 package com.codeclan.hotelserver.hotelserver.controllers;
 
-import com.codeclan.hotelserver.hotelserver.repositories.GuestRepository;
-import com.codeclan.hotelserver.hotelserver.models.people.Guest;
+import com.codeclan.hotelserver.hotelserver.models.people.Staff;
+import com.codeclan.hotelserver.hotelserver.repositories.StaffRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/guests")
-public class GuestController {
+@RequestMapping(value="/staffs")
+public class StaffController {
     @Autowired
-    GuestRepository guestRepository;
+    StaffRepository staffRepository;
 
     @GetMapping("/lastname/{lastname}")
-    public List<Guest> findAllGuestByLastName(@PathVariable String lastname){
-        return guestRepository.findAllGuestByLastName(lastname);
+    public List<Staff> findAllStaffByLastName(@PathVariable String lastname){
+        return staffRepository.findAllStaffByLastName(lastname);
     }
 
 }

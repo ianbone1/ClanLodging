@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import BookingContainer from './BookingContainer'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import BookingContainer from './BookingContainer';
+import NavBar from '../NavBar';
 
 class HotelContainer extends Component {
   render(){
     return(
-      <>
-      <h1>I am the Hotel Container</h1>
-      <BookingContainer/>
-      </>
+      <div>
+        <Router>
+        <>
+        <NavBar/>
+        <h1>I am the Hotel Container</h1>
+        <BookingContainer/>
+        </>
+        </Router>
+      </div>
     )
   }
 }

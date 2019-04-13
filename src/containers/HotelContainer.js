@@ -13,9 +13,22 @@ class HotelContainer extends Component {
         <>
         <NavBar/>
         <h1>I am the Hotel Container</h1>
-        <BookingContainer/>
-        <GuestContainer/>
-        <ReportingContainer/>
+        <Switch>
+
+        <Route exact path = "/bookings" render ={() => {
+          return <BookingContainer/>
+        }}/>
+
+        <Route exact path = "/guests" render ={() => {
+          return <GuestContainer/>
+        }}/>
+
+        <Route exact path = "/reports" render ={() => {
+          return <ReportingContainer/>
+        }}/>
+
+
+        </Switch>
         </>
         </Router>
 
@@ -25,5 +38,7 @@ class HotelContainer extends Component {
     )
   }
 }
+
+
 
 export default HotelContainer;

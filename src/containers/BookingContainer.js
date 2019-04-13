@@ -45,7 +45,10 @@ class BookingContainer extends Component{
          email: "x@x.com",
          phone: "0384343"
       }
-      ],
+    ],
+    bookings: [
+
+    ]
     }
   }
 
@@ -54,7 +57,7 @@ class BookingContainer extends Component{
       <div>
         <h2>I am Booking Container</h2>
         <BookingForm rooms = {this.state.rooms} guests = {this.state.guests}/>
-        <BookingList />
+        <BookingList bookings = {this.state.bookings}/>
       </div>
     )
   }

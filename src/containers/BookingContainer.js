@@ -47,7 +47,26 @@ class BookingContainer extends Component{
       }
     ],
     bookings: [
-
+      {
+        checkinDate: '2019-04-13',
+        checkoutDate: '2019-04-28',
+        guestId: 5,
+        partySize: '1',
+        roomId: 22,
+        checkedIn: false,
+        rate: '22.65',
+        billPaid: false
+      },
+      {
+        checkinDate: '2019-04-13',
+        checkoutDate: '2019-04-28',
+        guestId: 5756,
+        partySize: '1',
+        roomId: 22,
+        checkedIn: true,
+        rate: '22.65',
+        billPaid: false
+      }
     ]
     }
   }

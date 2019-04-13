@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import GuestContainer from './GuestContainer'
+import GuestContainer from './GuestContainer';
+import ReportingContainer from './ReportingContainer';
 
 class HotelContainer extends Component {
   render(){
@@ -7,6 +8,7 @@ class HotelContainer extends Component {
       <div>
       <h1>I am the Hotel Container</h1>
       <GuestContainer/>
+      <ReportingContainer/>
 
       </div>
     )

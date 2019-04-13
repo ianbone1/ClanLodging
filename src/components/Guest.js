@@ -10,6 +10,7 @@ const Guest =(props) => {
 <p>{props.postCode}</p>
 <p>{props.email}</p>
 <p>{props.phone}</p>
+<button onClick={handleClick}>Edit</button>
 
 </div>
   )

@@ -1,17 +1,27 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Guest from './Guest';
-class GuestList extends Component {
 
 
-render(){
+const GuestList = ({guests}) => {
+
+const guestNodes = guests.map((guest, index) =>{
+  return (
+    <Guest key={index}
+    firstName={guest.firstName}
+    lastName={guest.lastName} addressLine1={guest.addressLine1}
+    town={guest.town}
+    postCode={guest.postCode}
+    email={guest.email}
+    phone={guest.phone}></Guest>
+  )
+})
 
   return (
-    <div>
-    <h2>This is the GuestList</h2>
-    <Guest/>
+    <div className="guest-list">
+    {guestNodes}
     </div>
   );
-}
+
 
 }
 export default GuestList;

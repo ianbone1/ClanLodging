@@ -42,18 +42,3 @@ render(){
 
 }
 export default GuestForm;
-
-
-
-
-// handleSubmit(event){
-//   event.preventDefault()
-//   const author = this.state.author.trim()
-//   const text = this.state.text.trim()
-//   if(!text || !author) return;
-//
-// this.props.onCommentSubmit({author: author, text:text})
-//
-//   this.setState({author: '', text: ''})
-//
-// }

@@ -48,11 +48,11 @@ class BookingForm extends Component{
 
     return(
       <div>
-      <h3>I am Booking Form</h3>
+      <h3>Create new Booking</h3>
       <form onSubmit={this.handleSubmit} >
         <input name="checkinDate" type="date"  onChange = {this.handleDates}/>
         <input name="checkoutDate"type="date"  onChange = {this.handleDates}/>
-        <input name = "partySize" type="number" placeholder = "Party size" onChange = {this.handleChange}/>
+        <input name = "partySize" type="number" placeholder = "Party size" min="1" onChange = {this.handleChange}/>
 
         <select name="guestId" onChange = {this.handleChange}>
           <option disabled selected>Guest Name</option>

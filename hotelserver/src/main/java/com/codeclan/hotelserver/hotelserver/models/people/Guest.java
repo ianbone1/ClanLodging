@@ -1,6 +1,10 @@
 package com.codeclan.hotelserver.hotelserver.models.people;
 
+import com.codeclan.hotelserver.hotelserver.models.booking.Booking;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="guests")
@@ -9,6 +13,10 @@ public class Guest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long guestID;
+
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "guest", fetch = FetchType.LAZY)
+    private List<Booking> bookings;
 
     @Column
     private String firstName;
@@ -106,5 +114,21 @@ public class Guest {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
+    public void addBooking(Booking newBooking){
+        this.bookings.add(newBooking);
+    }
+
+    public void removeBooking(Booking oldBooking){
+        this.bookings.remove(oldBooking);
     }
 }

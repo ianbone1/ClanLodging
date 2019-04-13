@@ -1,6 +1,24 @@
 import React, {Component} from 'react';
 
 class GuestForm extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+
+      firstName: "",
+      lastName: "",
+      addressLine1: "",
+      town: "",
+      postCode: "",
+      email:"",
+      phone:""
+    }
+this.handlechange = this.handlechange.bind(this);
+  }
+
+handlechange (event) {
+  this.setState({[event.target.name]: event.target.value})
+}
 
 
 render(){
@@ -8,14 +26,14 @@ render(){
   return (
     <div>
       <form >
-      <input type="text" placeholder = "FirstName"/>
-      <input type="text" placeholder = "LastName"/>
-      <input type ="text" placeholder="addressLine1"/>
-      <input type ="text" placeholder="Town"/>
-      <input type ="text" placeholder="Postcode"/>
-      <input type ="text" placeholder="Email"/>
-      <input type ="text" placeholder="Phone Number"/>
-      <button type="submit">Save</button>
+      <input  required type="text" name = "firstName" placeholder ="First Name" onChange= {this.handlechange}/>
+      <input type="text" name = "lastName" placeholder ="Last Name" onChange= {this.handlechange}/>
+      <input type ="text" name="addressLine1" placeholder ="Address Line1" onChange= {this.handlechange}/>
+      <input type ="text" name="town" placeholder ="Town" onChange= {this.handlechange}/>
+      <input type ="text" name="postCode" placeholder ="Postcode" onChange= {this.handlechange}/>
+      <input type ="email" name="email" placeholder ="Email" onChange= {this.handlechange}/>
+      <input type ="number" name="phone" placeholder ="Phone" onChange= {this.handlechange}/>
+      <button type="submit" onSubmit = {this.handleSubmit}>Save</button>
       </form>
 
     </div>
@@ -24,3 +42,18 @@ render(){
 
 }
 export default GuestForm;
+
+
+
+
+// handleSubmit(event){
+//   event.preventDefault()
+//   const author = this.state.author.trim()
+//   const text = this.state.text.trim()
+//   if(!text || !author) return;
+//
+// this.props.onCommentSubmit({author: author, text:text})
+//
+//   this.setState({author: '', text: ''})
+//
+// }

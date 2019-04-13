@@ -1,14 +1,17 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Guest extends Component {
-
-
-render(){
-
+const Guest =(props) => {
   return (
-    <h2>I am a Guest</h2>
-  );
-}
+<div className="guest">
+<p>{props.firstName}</p>
+<p>{props.lastName}</p>
+<p>{props.addressLine1}</p>
+<p>{props.town}</p>
+<p>{props.postCode}</p>
+<p>{props.email}</p>
+<p>{props.phone}</p>
 
+</div>
+  )
 }
 export default Guest;

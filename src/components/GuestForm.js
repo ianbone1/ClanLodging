@@ -14,10 +14,17 @@ class GuestForm extends Component {
       phone:""
     }
 this.handlechange = this.handlechange.bind(this);
+this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 handlechange (event) {
   this.setState({[event.target.name]: event.target.value})
+}
+
+handleSubmit(event){
+event.preventDefault();
+const newGuest = this.state;
+console.log(newGuest);
 }
 
 
@@ -25,7 +32,7 @@ render(){
 
   return (
     <div>
-      <form >
+      <form onSubmit ={this.handleSubmit}>
       <input  required type="text" name = "firstName" placeholder ="First Name" onChange= {this.handlechange}/>
       <input type="text" name = "lastName" placeholder ="Last Name" onChange= {this.handlechange}/>
       <input type ="text" name="addressLine1" placeholder ="Address Line1" onChange= {this.handlechange}/>

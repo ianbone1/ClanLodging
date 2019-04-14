@@ -17,6 +17,11 @@ public class GuestController {
     @Autowired
     GuestRepository guestRepository;
 
+    @GetMapping("/")
+    public List<Guest> findAll() {
+        return guestRepository.findAll();
+    }
+
     @GetMapping("/lastname/{lastname}")
     public List<Guest> findAllGuestByLastName(@PathVariable String lastname){
         return guestRepository.findAllGuestByLastName(lastname);

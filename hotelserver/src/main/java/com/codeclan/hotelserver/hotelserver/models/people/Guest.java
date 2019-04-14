@@ -1,6 +1,7 @@
 package com.codeclan.hotelserver.hotelserver.models.people;
 
 import com.codeclan.hotelserver.hotelserver.models.booking.Booking;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class Guest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long guestID;
 
+    @JsonIgnoreProperties(value = {"guest","room.bookings"})
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     @OneToMany(mappedBy = "guest", fetch = FetchType.LAZY)
     private List<Booking> bookings;

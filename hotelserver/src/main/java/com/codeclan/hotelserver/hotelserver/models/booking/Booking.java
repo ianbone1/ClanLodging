@@ -1,6 +1,8 @@
 package com.codeclan.hotelserver.hotelserver.models.booking;
 
 import com.codeclan.hotelserver.hotelserver.models.people.Guest;
+import com.codeclan.hotelserver.hotelserver.models.rooms.Room;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,14 +16,14 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookingID;
 
+    @JsonIgnoreProperties(value="bookings")
     @ManyToOne
     @JoinColumn(name = "guestID", nullable = false)
     private Guest guest;
 
-    @Column
-//    @ManyToOne
-//    @JoinColumn(name = "room_id", nullable = false)
-    private Long roomID;
+    @ManyToOne
+    @JoinColumn(name = "roomID", nullable = false)
+    private Room room;
 
     @ElementCollection
     @Temporal(TemporalType.DATE)
@@ -34,18 +36,14 @@ public class Booking {
     private Boolean checkedIn;
 
     @Column
-    private double rate;
-
-    @Column
     private Boolean billPaid;
 
-    public Booking(Guest guest, Long roomID, List<Date> bookingDates, Integer partySize, Boolean checkedIn, double rate, Boolean billPaid) {
+    public Booking(Guest guest, Room room, List<Date> bookingDates, Integer partySize, Boolean checkedIn, Boolean billPaid) {
         this.guest = guest;
-        this.roomID = roomID;
+        this.room = room;
         this.bookingDates = bookingDates;
         this.partySize = partySize;
         this.checkedIn = checkedIn;
-        this.rate = rate;
         this.billPaid = billPaid;
     }
 
@@ -53,7 +51,7 @@ public class Booking {
     }
 
     public Long getBookingID() {
-        return bookingID;
+        return this.bookingID;
     }
 
     public void setBookingID(Long bookingID) {
@@ -61,19 +59,23 @@ public class Booking {
     }
 
     public Guest getGuest() {
-        return guest;
+        return this.guest;
+    }
+
+    public Long getGuestID(){
+        return guest.getGuestID();
     }
 
     public void setGuest(Guest guest) {
         this.guest = guest;
     }
 
-    public Long getRoomID() {
-        return roomID;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomID(Long roomID) {
-        this.roomID = roomID;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public Integer getPartySize() {
@@ -90,14 +92,6 @@ public class Booking {
 
     public void setCheckedIn(Boolean checkedIn) {
         this.checkedIn = checkedIn;
-    }
-
-    public double getRate() {
-        return rate;
-    }
-
-    public void setRate(double rate) {
-        this.rate = rate;
     }
 
     public Boolean getBillPaid() {

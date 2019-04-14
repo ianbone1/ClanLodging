@@ -16,7 +16,7 @@ class HotelContainer extends Component {
         <Router>
         <>
         <NavBar/>
-        <h1>I am the Hotel Container</h1>
+        <h1>ClanLodging</h1>
         <Switch>
 
         <Route exact path = "/bookings" render ={() => {

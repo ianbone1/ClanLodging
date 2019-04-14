@@ -17,7 +17,7 @@ const BookingList = (props) => {
 
     return(
       <ul>
-        <h4>Bookings List</h4>
+        <h4>Upcoming Bookings</h4>
         {bookingsNode}
       </ul>
     )

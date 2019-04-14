@@ -9,7 +9,7 @@ const Booking = (props) =>{
 
     return(
       <div>
-        <p>{props.booking.guestId}</p>
+        <h4>{props.booking.guestId}</h4>
         <p>{props.booking.checkinDate}</p>
         <p>{props.booking.checkoutDate}</p>
         <p>{props.booking.roomId}</p>

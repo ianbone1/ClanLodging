@@ -78,7 +78,7 @@ class BookingContainer extends Component{
   render(){
     return(
       <div>
-        <h2>I am Booking Container</h2>
+        <h2>Booking Management</h2>
         <BookingForm rooms = {this.state.rooms} guests = {this.state.guests}/>
         <BookingList bookings = {this.state.bookings}/>
       </div>

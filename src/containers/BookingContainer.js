@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import BookingForm from '../components/BookingForm';
 import BookingList from '../components/BookingList';
 
+
+
 class BookingContainer extends Component{
   constructor(props){
     super(props);
@@ -48,6 +50,7 @@ class BookingContainer extends Component{
     ],
     bookings: [
       {
+        bookingId: 2,
         checkinDate: '2019-04-13',
         checkoutDate: '2019-04-28',
         guestId: 5,
@@ -58,6 +61,7 @@ class BookingContainer extends Component{
         billPaid: false
       },
       {
+        bookingId: 4,
         checkinDate: '2019-04-13',
         checkoutDate: '2019-04-28',
         guestId: 5756,

@@ -4,9 +4,13 @@ import BookingContainer from './BookingContainer';
 import NavBar from '../NavBar';
 import GuestContainer from './GuestContainer';
 import ReportingContainer from './ReportingContainer';
+import EditBooking from '../components/EditBooking';
 
 class HotelContainer extends Component {
+
+
   render(){
+
     return(
       <div>
         <Router>
@@ -27,7 +31,9 @@ class HotelContainer extends Component {
           return <ReportingContainer/>
         }}/>
 
-
+        <Route exact path = "/bookings/edit/:id" render ={() => {
+          return <EditBooking/>
+        }}/>
         </Switch>
         </>
         </Router>

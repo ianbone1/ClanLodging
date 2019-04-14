@@ -16,9 +16,16 @@ class BookingForm extends Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleDates = this.handleDates.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRooms = this.handleRooms.bind(this);
   }
 
   handleChange(event){
+    this.setState({[event.target.name]: event.target.value})
+  }
+
+  // Should handle setting room ID and rate. So far only sets room ID
+  handleRooms(event){
+    this.setState({[event.target.rate]: event.target.value.rate})
     this.setState({[event.target.name]: event.target.value})
   }
 
@@ -59,7 +66,7 @@ class BookingForm extends Component{
           {guests}
         </select>
 
-        <select name="roomId" onChange = {this.handleChange}>
+        <select name="roomId"  onChange = {this.handleRooms}>
           <option disabled selected>Pick Room</option>
           {rooms}
         </select>

@@ -1,15 +1,13 @@
 package com.codeclan.hotelserver.hotelserver.components;
 
 import com.codeclan.hotelserver.hotelserver.models.booking.Booking;
+import com.codeclan.hotelserver.hotelserver.models.hotel.Hotel;
 import com.codeclan.hotelserver.hotelserver.models.people.Guest;
 
 import com.codeclan.hotelserver.hotelserver.models.people.Staff;
 import com.codeclan.hotelserver.hotelserver.models.rooms.Room;
 import com.codeclan.hotelserver.hotelserver.models.rooms.RoomType;
-import com.codeclan.hotelserver.hotelserver.repositories.BookingRepository;
-import com.codeclan.hotelserver.hotelserver.repositories.GuestRepository;
-import com.codeclan.hotelserver.hotelserver.repositories.RoomRepository;
-import com.codeclan.hotelserver.hotelserver.repositories.StaffRepository;
+import com.codeclan.hotelserver.hotelserver.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -33,6 +31,9 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     RoomRepository roomRepository;
+
+    @Autowired
+    HotelRepository hotelRepository;
 
     public DataLoader() {
 
@@ -177,6 +178,9 @@ public class DataLoader implements ApplicationRunner {
         bookingRepository.save(booking3);
         System.out.print(".");
 
+        System.out.println("Creating Hotel Clan");
+        Hotel hotel = new Hotel("Clan Lodging", 0.0);
+        hotelRepository.save(hotel);
 
         System.out.println("\nFinished Seeding The Database");
 

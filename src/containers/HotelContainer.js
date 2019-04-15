@@ -14,10 +14,12 @@ class HotelContainer extends Component {
     this.state = {
       guests:[],
       rooms:[],
-      bookings: []
+      bookings: [],
+      editBooking: null
     }
     this.findWithAttr = this.findWithAttr.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
   }
 
   componentDidMount(){
@@ -48,15 +50,23 @@ class HotelContainer extends Component {
      return -1;
   }
 
-    handleDelete(id){
-      const request = new Requests();
-      const url = `bookings/${id}`;
-      request.delete(url);
-      const prevState = this.state.bookings
-      const index = this.findWithAttr(this.state.bookings, "bookingID", id)
-      prevState.splice(index, 1)
-      this.setState({bookings: prevState})
-    }
+  handleDelete(id){
+    const request = new Requests();
+    const url = `bookings/${id}`;
+    request.delete(url);
+    const prevState = this.state.bookings
+    const index = this.findWithAttr(this.state.bookings, "bookingID", id)
+    prevState.splice(index, 1)
+    this.setState({bookings: prevState})
+  }
+
+  handleEdit(id){
+    const index = this.findWithAttr(this.state.bookings, "bookingID", id)
+    const obj = this.state.bookings.splice(index, 1)
+    this.setState({editBooking: obj[0]})
+    console.log(obj[0]);
+    console.log(index);
+  }
 
 
   render(){
@@ -70,7 +80,7 @@ class HotelContainer extends Component {
         <Switch>
 
         <Route exact path = "/bookings" render ={() => {
-          return <BookingContainer rooms={this.state.rooms} guests={this.state.guests} bookings = {this.state.bookings} handleDelete = {this.handleDelete}/>
+          return <BookingContainer rooms={this.state.rooms} guests={this.state.guests} bookings = {this.state.bookings} handleDelete = {this.handleDelete} handleEdit = {this.handleEdit}/>
         }}/>
 
         <Route exact path = "/guests" render ={() => {
@@ -81,15 +91,12 @@ class HotelContainer extends Component {
           return <ReportingContainer/>
         }}/>
 
-        <Route exact path = "/bookings/edit/:id" render ={() => {
-          return <EditBooking/>
+        <Route exact path = "/edit" render ={() => {
+          return <EditBooking booking = {this.state.editBooking} rooms={this.state.rooms} guests={this.state.guests}/>
         }}/>
         </Switch>
         </>
         </Router>
-
-
-
       </div>
     )
   }

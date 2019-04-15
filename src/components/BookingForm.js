@@ -25,9 +25,8 @@ class BookingForm extends Component{
     this.setState({[event.target.name]: event.target.value})
   }
 
-  // Should handle setting room ID and rate. So far only sets room ID
+
   handleRooms(event){
-    this.setState({[event.target.rate]: event.target.value.rate})
     this.setState({[event.target.name]: event.target.value})
   }
 
@@ -40,7 +39,6 @@ class BookingForm extends Component{
   }
 
   handleSubmit(event){
-    // Booking booking1 = new Booking(guest1 ,room1 ,dateList1,2,false,false);
     event.preventDefault();
     const bookingDateList = this.buildDateList(this.state.checkinDate, this.state.checkoutDate)
     this.setState({bookingDates: bookingDateList})

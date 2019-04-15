@@ -20,5 +20,12 @@ delete(url){
   })
 }
 
+update(url){
+  return fetch(url, {
+    method: "PUT",
+    headers:{"Content-Type": "application/json"}
+  })
+}
+
 }
 export default Requests;

@@ -9,7 +9,7 @@ const BookingList = (props) => {
     return (
       <li key = {index}>
         <div>
-          <Booking booking={booking} handleDelete = {props.handleDelete}/>
+          <Booking booking={booking} handleDelete = {props.handleDelete} handleEdit = {props.handleEdit}/>
         </div>
       </li>
     )

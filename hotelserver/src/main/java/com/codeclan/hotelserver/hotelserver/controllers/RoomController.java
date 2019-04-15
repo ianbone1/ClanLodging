@@ -22,6 +22,12 @@ public class RoomController {
         return roomRepository.findAll();
     }
 
+    @GetMapping("/sorted")
+    public List<Room> findAllByOrderByRoomNumberAsc() {
+        return roomRepository.findAllByOrderByRoomNumberAsc();
+    }
+
+
     @GetMapping("/type/{roomType}")
     public List<Room> findAllRoomByRoomType(@PathVariable RoomType roomType) {
         return roomRepository.findAllRoomByRoomType(roomType);

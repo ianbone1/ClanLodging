@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Requests from '../helpers/Requests.js'
 
 class BookingForm extends Component{
   constructor(props){
@@ -6,17 +7,18 @@ class BookingForm extends Component{
     this.state = {
       checkinDate: '',
       checkoutDate: '',
-      guestId: null,
+      guest: null,
+      room: null,
+      bookingDates:[],
       partySize: '',
-      roomId: null,
       checkedIn: false,
-      rate: '',
       billPaid: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleDates = this.handleDates.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRooms = this.handleRooms.bind(this);
+    this.buildDateList = this.buildDateList.bind(this);
   }
 
   handleChange(event){
@@ -33,40 +35,51 @@ class BookingForm extends Component{
     this.setState({[event.target.name]: event.target.value})
   }
 
-  handleSubmit(event){
-    event.preventDefault();
-    const booking = this.state;
-    const room = this.props.rooms[booking.roomId]
-    room.bookings.push(booking);
-    room.calendar.push(booking.checkinDate, booking.checkoutDate)
-    console.log(room);
-    console.log(booking);
+  buildDateList(startDate, endDate){
+    return [startDate,endDate]
+  }
 
+  handleSubmit(event){
+    // Booking booking1 = new Booking(guest1 ,room1 ,dateList1,2,false,false);
+    event.preventDefault();
+    const bookingDateList = this.buildDateList(this.state.checkinDate, this.state.checkoutDate)
+    this.setState({bookingDates: bookingDateList})
+    const booking = {
+      "guest": this.state.guest,
+      "room": this.state.room,
+      "bookingDates": bookingDateList,
+      "partySize": this.state.partySize,
+      "checkedIn": this.state.checkedIn,
+      "billPaid": this.state.billPaid}
+
+    console.log("The Booking: ", booking)
+    const request = new Requests();
+    request.post('bookings', booking)
   }
 
   render(){
     const rooms = this.props.rooms.map((room, index) =>{
-      return <option key={index} value={index}>Number: {room.roomNumber} {room.roomType} £{room.rate}</option>
+      return <option key={index} value={room._links.self.href}>Number: {room.roomNumber} {room.roomType} £{room.rate}</option>
     })
 
     const guests = this.props.guests.map((guest, index) => {
-      return <option key={index} value={guest.personId}>{guest.firstName} {guest.lastName}</option>
+      return <option key={index} value={guest._links.self.href}>{guest.firstName} {guest.lastName}</option>
     })
 
     return(
       <div>
       <h3>Create new Booking</h3>
       <form onSubmit={this.handleSubmit} >
-        <input name="checkinDate" type="date"  onChange = {this.handleDates}/>
-        <input name="checkoutDate"type="date"  onChange = {this.handleDates}/>
+        <input name="checkinDate" type="date"  onChange = {this.handleChange}/>
+        <input name="checkoutDate"type="date"  onChange = {this.handleChange}/>
         <input name = "partySize" type="number" placeholder = "Party size" min="1" onChange = {this.handleChange}/>
 
-        <select name="guestId" onChange = {this.handleChange}>
+        <select name="guest" onChange = {this.handleChange}>
           <option disabled selected>Guest Name</option>
           {guests}
         </select>
 
-        <select name="roomId"  onChange = {this.handleRooms}>
+        <select name="room"  onChange = {this.handleRooms}>
           <option disabled selected>Pick Room</option>
           {rooms}
         </select>

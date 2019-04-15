@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Requests from '../helpers/Requests.js'
 
 class GuestForm extends Component {
   constructor(props){
@@ -13,25 +14,27 @@ class GuestForm extends Component {
       email:"",
       phone:""
     }
-this.handlechange = this.handlechange.bind(this);
-this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlechange = this.handlechange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-handlechange (event) {
-  this.setState({[event.target.name]: event.target.value})
-}
+  handlechange (event) {
+    this.setState({[event.target.name]: event.target.value})
+  }
 
-handleSubmit(event){
-event.preventDefault();
-const newGuest = this.state;
-console.log(newGuest);
-}
+  handleSubmit(event){
+    event.preventDefault();
+    const newGuest = this.state;
+    console.log(newGuest);
+    const request = new Requests();
+    request.post('guests', this.state)
+  }
 
 
-render(){
+  render(){
 
-  return (
-    <div>
+    return (
+      <div>
       <form onSubmit ={this.handleSubmit}>
       <input  required type="text" name = "firstName" placeholder ="First Name" onChange= {this.handlechange}/>
       <input type="text" name = "lastName" placeholder ="Last Name" onChange= {this.handlechange}/>
@@ -43,9 +46,9 @@ render(){
       <button type="submit" onSubmit = {this.handleSubmit}>Save</button>
       </form>
 
-    </div>
-  );
-}
+      </div>
+    );
+  }
 
 }
 export default GuestForm;

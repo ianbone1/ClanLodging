@@ -1,0 +1,41 @@
+body {
+  background-color: black;
+  color : silver;
+  height: 100%;
+  width: 100%;
+}
+
+.top_nav_wrapper{
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  color : silver;
+  z-index: +1;
+}
+
+.topnav {
+  justify-content: flex-start;
+  background-color: #333;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  width: 25%;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  justify-content: flex-start;
+  font-weight: bold;
+}
+
+.topnav a:hover {
+  background-color: silver;
+  color: black;
+}

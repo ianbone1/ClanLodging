@@ -4,19 +4,15 @@ import {Link} from 'react-router-dom';
 
 const Booking = (props) =>{
 
-  // Should be returning the unique booking to the edit component... eventually
-    const url = `/bookings/edit/${props.booking.key}`;
-
     return(
       <div>
-        <h4>{props.booking.guestId}</h4>
-        <p>{props.booking.checkinDate}</p>
-        <p>{props.booking.checkoutDate}</p>
-        <p>{props.booking.roomId}</p>
-        <Link to={url}><button>Edit</button></Link>
-        <button>Check In</button>
-        <button>Cancel</button>
-
+        <p>Name: {props.booking.guest.firstName} {props.booking.guest.lastName}</p>
+        <p>Room: {props.booking.room.roomNumber}</p>
+        <p>Checkin Date: {props.booking.bookingDates[0]}</p>
+        <p>Checkout Date: {props.booking.bookingDates.slice(-1)[0]}</p>
+        <p>Party size: {props.booking.partySize}</p>
+        <Link><button>Edit</button></Link>
+        <button onClick = { () => { if (window.confirm('Are you sure you wish to delete this item?')) props.handleDelete(props.booking.bookingID)  } } >Cancel Booking</button>
       </div>
     )
 }

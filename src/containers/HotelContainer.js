@@ -13,8 +13,11 @@ class HotelContainer extends Component {
     super(props)
     this.state = {
       guests:[],
-      rooms:[]
+      rooms:[],
+      bookings: []
     }
+    this.findWithAttr = this.findWithAttr.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount(){
@@ -22,18 +25,39 @@ class HotelContainer extends Component {
 
     const guestPromise=request.get("guests")
     const roomPromise=request.get("rooms")
+    const bookingPromise = request.get("bookings/")
 
-    const promises = [guestPromise, roomPromise]
+    const promises = [guestPromise, roomPromise, bookingPromise]
 
     Promise.all(promises)
       .then(data =>{
         this.setState({
           guests: data[0]._embedded.guests,
-          rooms: data[1]._embedded.rooms
+          rooms: data[1]._embedded.rooms,
+          bookings: data[2]
         })
       })
-
   }
+
+  findWithAttr(array, attr, value) {
+     for(var i = 0; i < array.length; i += 1) {
+         if(array[i][attr] === value) {
+             return i;
+         }
+     }
+     return -1;
+  }
+
+    handleDelete(id){
+      const request = new Requests();
+      const url = `bookings/${id}`;
+      request.delete(url);
+      const prevState = this.state.bookings
+      const index = this.findWithAttr(this.state.bookings, "bookingID", id)
+      prevState.splice(index, 1)
+      this.setState({bookings: prevState})
+    }
+
 
   render(){
 
@@ -46,7 +70,7 @@ class HotelContainer extends Component {
         <Switch>
 
         <Route exact path = "/bookings" render ={() => {
-          return <BookingContainer rooms={this.state.rooms} guests={this.state.guests}/>
+          return <BookingContainer rooms={this.state.rooms} guests={this.state.guests} bookings = {this.state.bookings} handleDelete = {this.handleDelete}/>
         }}/>
 
         <Route exact path = "/guests" render ={() => {

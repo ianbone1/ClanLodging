@@ -84,7 +84,7 @@ public class DataLoader implements ApplicationRunner {
         Staff staff3 = new Staff("Squidward","Squid","Renfrew Street", "Bikini Bottom", "G20", "squidward@codeclan.com", "07884770000", "Front Desk");
         staffRepository.save(staff3);
 
-        System.out.println("Seeding rooms");
+        System.out.println("Seeding room numbers:");
         List<Integer> roomNumbers = new ArrayList<Integer>();
         int maxRooms=180;
         for (int i=0; i< maxRooms; i++){
@@ -100,12 +100,13 @@ public class DataLoader implements ApplicationRunner {
                 }
             }
         }
+        System.out.println();
 
-
+        System.out.println("Asigning Room Types:");
         List<Room> allRooms=new ArrayList<Room>();
 
         for (RoomType rt : RoomType.values()){
-            System.out.println(rt);
+            System.out.println("\n" + rt);
             double rate=0.0;
             switch (rt) {
                 case SINGLE:
@@ -134,14 +135,14 @@ public class DataLoader implements ApplicationRunner {
                 }
             }
         }
-        System.out.println(".");
+        System.out.println();
 
         Room room1 = allRooms.get(1);
-        System.out.println("Room 1 ID= " +room1.getRoomID() + " RoomNumber: "+  room1.getRoomNumber());
+        System.out.println("Room 1 ID: " +room1.getRoomID() + " RoomNumber: "+  room1.getRoomNumber() +" "+ room1.getRoomType());
         Room room2 = allRooms.get(47);
-        System.out.println("Room 2 ID= " +room2.getRoomID() + " RoomNumber: "+  room2.getRoomNumber());
+        System.out.println("Room 2 ID: " +room2.getRoomID() + " RoomNumber: "+  room2.getRoomNumber() +" "+ room2.getRoomType());
         Room room3 = allRooms.get(120);
-        System.out.println("Room 3 ID= " +room3.getRoomID() + " RoomNumber: "+  room3.getRoomNumber());
+        System.out.println("Room 3 ID: " +room3.getRoomID() + " RoomNumber: "+  room3.getRoomNumber() +" "+ room3.getRoomType());
 
         System.out.println("Rooms seeded.");
 
@@ -177,7 +178,7 @@ public class DataLoader implements ApplicationRunner {
         System.out.print(".");
 
 
-        System.out.println("Finished Seeding The Database");
+        System.out.println("\nFinished Seeding The Database");
 
     }
 

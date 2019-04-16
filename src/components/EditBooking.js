@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Requests from '../helpers/Requests.js'
+import {Redirect} from 'react-router-dom';
 
 class EditBooking extends Component {
   constructor(props){
@@ -12,7 +13,8 @@ class EditBooking extends Component {
       bookingDates:[],
       partySize: '',
       checkedIn: false,
-      billPaid: false
+      billPaid: false,
+      redirectMe: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,6 +44,7 @@ class EditBooking extends Component {
     console.log("****** EDITED BOOKING ***** ", booking)
     const request = new Requests();
     request.update(url, booking)
+    this.setState({redirectMe: true})
   }
 
 
@@ -56,7 +59,9 @@ render(){
 
   if (!this.props.booking) return null;
 
-
+  if (this.state.redirectMe === true) {
+        return <Redirect to='/bookings' />
+      }
 
 return(
   <div>
@@ -77,7 +82,7 @@ return(
       {room}
       </select>
 
-    <button type="submit">Save edited booking</button>
+    <button type="submit">Save Changes</button>
     </form>
   </div>
 )

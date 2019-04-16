@@ -38,8 +38,8 @@ class EditBooking extends Component {
       "partySize": this.state.partySize,
       "checkedIn": this.state.checkedIn,
       "billPaid": this.state.billPaid}
-    const url = `http://localhost:3000/bookings/:id`
-    console.log("The Booking: ", booking)
+    const url = `/bookings/${this.props.booking.bookingID}`
+    console.log("****** EDITED BOOKING ***** ", booking)
     const request = new Requests();
     request.update(url, booking)
   }
@@ -64,16 +64,16 @@ return(
     <input name = "partySize" type="number"  min="1" onChange = {this.handleChange}/>
 
     <select name="guest" onChange = {this.handleChange}>
-      <option disabled value = {this.props.booking.guest}>{this.props.booking.guest.firstName} {this.props.booking.guest.lastName}</option>
+      <option disabled selected value = {this.props.booking.guest}>{this.props.booking.guest.firstName} {this.props.booking.guest.lastName}</option>
       {guest}
     </select>
 
     <select name="room" onChange = {this.handleChange} >
-      <option disabled value = {this.props.booking.room}>Number: {this.props.booking.room.roomNumber} {this.props.booking.room.roomType} £{this.props.booking.room.rate}</option>
+      <option disabled selected value = {this.props.booking.room}>Number: {this.props.booking.room.roomNumber} {this.props.booking.room.roomType} £{this.props.booking.room.rate}</option>
       {room}
       </select>
 
-    <button type="submit">Create Booking</button>
+    <button type="submit">Save edited booking</button>
     </form>
   </div>
 )

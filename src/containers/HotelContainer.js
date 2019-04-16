@@ -66,6 +66,8 @@ class HotelContainer extends Component {
     this.setState({editBooking: obj[0]})
     console.log(obj[0]);
     console.log(index);
+    const urlCheck = "http://localhost:8080/bookings/:id"
+    console.log(urlCheck);
   }
 
 

@@ -34,8 +34,17 @@ class BookingForm extends Component{
     this.setState({[event.target.name]: event.target.value})
   }
 
-  buildDateList(startDate, endDate){
-    return [startDate,endDate]
+    buildDateList(startDate, endDate){
+      const Moment = require('moment');
+      const MomentRange = require('moment-range');
+      const moment = MomentRange.extendMoment(Moment);
+      const start = moment(startDate)
+      const end = moment(endDate)
+      const range = moment.range(start, end)
+      const arrayOfDates = Array.from(range.by('days'))
+      return arrayOfDates
+    // return Array(Math.floor((endDate - startDate) / 86400000) + 1).fill().map((_, idx) => (new Date(startDate.getTime() + idx * 86400000)))
+    // return [startDate,endDate]
   }
 
   handleSubmit(event){

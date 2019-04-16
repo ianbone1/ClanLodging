@@ -56,16 +56,16 @@ class HotelContainer extends Component {
     const url = `bookings/${id}`;
     request.delete(url);
     const prevState = this.state.bookings
-    const index = this.findWithAttr(this.state.bookings, "bookingID", id)
+    const index = this.findWithAttr(this.state.bookings, "bookingid", id)
     prevState.splice(index, 1)
     this.setState({bookings: prevState})
   }
 
   handleEditBooking(id){
-    const index = this.findWithAttr(this.state.bookings, "bookingID", id)
+    const index = this.findWithAttr(this.state.bookings, "bookingid", id)
     const bookingToEdit = this.state.bookings.splice(index, 1)
     console.log("Just set state of editBooking with:" , this.state.editBooking)
-    
+
     this.setState({editBooking: bookingToEdit[0]})
     // console.log(bookingToEdit[0]);
     // console.log(index);

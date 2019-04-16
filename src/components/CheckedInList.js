@@ -3,7 +3,7 @@ import CheckOut from './CheckOut';
 
 const CheckedInList = (props) =>{
   // Filters and removes checked in bookings
-  const checkedIn = props.bookings.filter((booking) => booking.checkedIn === true)
+  const checkedIn = props.bookings.filter((booking) => booking.checkedin === true)
   const bookingsNode = checkedIn.map((booking, index) => {
     return (
       <li key = {index}>

@@ -6,14 +6,14 @@ class EditBooking extends Component {
   constructor(props){
     super(props);
     this.state = {
-      checkinDate: this.props.booking.bookingDates[0],
-      checkoutDate: this.props.booking.bookingDates.slice(-1)[0],
+      checkinDate: this.props.booking.bookingdates[0],
+      checkoutDate: this.props.booking.bookingdates.slice(-1)[0],
       guest: this.props.booking.guest,
       room: this.props.booking.room,
-      bookingDates:[],
-      partySize: this.props.booking.partySize,
-      checkedIn: this.props.booking.checkedIn,
-      billPaid: this.props.booking.billPaid,
+      bookingdates:[],
+      partysize: this.props.booking.partysize,
+      checkedin: this.props.booking.checkedin,
+      billpaid: this.props.booking.billpaid,
       redirectMe: false
     }
     this.handleChange = this.handleChange.bind(this);
@@ -25,7 +25,7 @@ class EditBooking extends Component {
     console.log("Event.target.name:", event.target.name)
     console.log("Event.target.value:", event.target.value)
     this.setState({[event.target.name]: event.target.value})
-    console.log("Party size is now: ", this.state.partySize)
+    console.log("Party size is now: ", this.state.partysize)
   }
 
   buildDateList(startDate, endDate){
@@ -46,12 +46,12 @@ class EditBooking extends Component {
     const booking = {
       "guest": this.state.guest,
       "room": this.state.room,
-      "bookingDates": bookingDateList,
-      "partySize": parseInt(this.state.partySize),
-      "checkedIn": false,
-      "billPaid": false}
+      "bookingdates": bookingDateList,
+      "partysize": parseInt(this.state.partysize),
+      "checkedin": false,
+      "billpaid": false}
 
-    const url = `/bookings/${this.props.booking.bookingID}`
+    const url = `/bookings/${this.props.booking.bookingid}`
     console.log("****** EDITED BOOKING ***** ", booking)
     const request = new Requests();
     request.update(url, booking)
@@ -61,11 +61,11 @@ class EditBooking extends Component {
 
 render(){
   const room = this.props.rooms.map((room, index) =>{
-    return <option key={index} value={room._links.self.href}>Number: {room.roomNumber} {room.roomType} £{room.rate}</option>
+    return <option key={index} value={room._links.self.href}>Number: {room.roomnumber} {room.roomtype} £{room.rate}</option>
   })
 
   const guest = this.props.guests.map((guest, index) => {
-    return <option key={index} value={guest._links.self.href}>{guest.firstName} {guest.lastName}</option>
+    return <option key={index} value={guest._links.self.href}>{guest.firstname} {guest.lastname}</option>
   })
 
   if (!this.props.booking) return null;
@@ -81,15 +81,15 @@ return(
     <input name="checkinDate" type="date"  defaultValue={this.state.checkinDate} onChange = {this.handleChange}/>
     <input name="checkoutDate"type="date"  defaultValue={this.state.checkoutDate} onChange = {this.handleChange}/>
 
-    <input name = "partySize" type="number" defaultValue={this.state.partySize} onChange = {this.handleChange}/>
+    <input name = "partysize" type="number" defaultValue={this.state.partysize} onChange = {this.handleChange}/>
 
     <select name="guest" onChange = {this.handleChange}>
-      <option disabled selected value = {this.state.guest}>{this.state.guest.firstName} {this.state.guest.lastName}</option>
+      <option disabled selected value = {this.state.guest}>{this.state.guest.firstname} {this.state.guest.lastname}</option>
       {guest}
     </select>
 
     <select name="room" onChange = {this.handleChange} >
-      <option disabled selected value = {this.state.room}>Number: {this.state.room.roomNumber} {this.state.room.roomType} £{this.state.room.rate}</option>
+      <option disabled selected value = {this.state.room}>Number: {this.state.room.roomnumber} {this.state.room.roomtype} £{this.state.room.rate}</option>
       {room}
       </select>
 

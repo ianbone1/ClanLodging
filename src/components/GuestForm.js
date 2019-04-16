@@ -6,11 +6,11 @@ class GuestForm extends Component {
     super(props);
     this.state = {
 
-      firstName: "",
-      lastName: "",
-      addressLine1: "",
+      firstname: "",
+      lastname: "",
+      addressline1: "",
       town: "",
-      postCode: "",
+      postcode: "",
       email:"",
       phone:""
     }
@@ -36,11 +36,11 @@ class GuestForm extends Component {
     return (
       <div>
       <form onSubmit ={this.handleSubmit}>
-      <input  required type="text" name = "firstName" placeholder ="First Name" onChange= {this.handlechange}/>
-      <input type="text" name = "lastName" placeholder ="Last Name" onChange= {this.handlechange}/>
-      <input type ="text" name="addressLine1" placeholder ="Address Line1" onChange= {this.handlechange}/>
+      <input  required type="text" name = "firstname" placeholder ="First Name" onChange= {this.handlechange}/>
+      <input type="text" name = "lastname" placeholder ="Last Name" onChange= {this.handlechange}/>
+      <input type ="text" name="addressline1" placeholder ="Address Line1" onChange= {this.handlechange}/>
       <input type ="text" name="town" placeholder ="Town" onChange= {this.handlechange}/>
-      <input type ="text" name="postCode" placeholder ="Postcode" onChange= {this.handlechange}/>
+      <input type ="text" name="postcode" placeholder ="Postcode" onChange= {this.handlechange}/>
       <input type ="email" name="email" placeholder ="Email" onChange= {this.handlechange}/>
       <input type ="number" name="phone" placeholder ="Phone" onChange= {this.handlechange}/>
       <button type="submit" onSubmit = {this.handleSubmit}>Save</button>

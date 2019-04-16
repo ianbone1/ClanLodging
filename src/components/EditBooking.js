@@ -51,7 +51,7 @@ class EditBooking extends Component {
       "checkedin": this.state.checkedin,
       "billpaid": this.state.billpaid}
 
-    const url = `http://localhost:8080/api/bookings/${this.props.booking.bookingid}`
+    const url = `bookings/${this.props.booking.bookingid}`
     console.log("****** EDITED BOOKING ***** ", booking)
     const request = new Requests();
     request.update(url, booking)

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Requests from '../helpers/Requests.js'
 
+
 class BookingForm extends Component{
   constructor(props){
     super(props);

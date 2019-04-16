@@ -13,7 +13,7 @@ const Booking = (props) =>{
         <p>Checkin Date: {props.booking.bookingdates[0]}</p>
         <p>Checkout Date: {props.booking.bookingdates.slice(-1)[0]}</p>
         <p>Party size: {props.booking.partysize}</p>
-        <Link to = {url}><button onClick = {() => props.handleEditBooking(props.booking.bookingid)}>Edit</button></Link>
+        <Link to = {url}><button onClick = {() => props.handleEditBooking(props.booking)}>Edit</button></Link>
         <button onClick = { () => { if (window.confirm('Are you sure you wish to delete this item?')) props.handleDeleteBooking(props.booking.bookingid)  } } >Cancel Booking</button>
       </div>
     )

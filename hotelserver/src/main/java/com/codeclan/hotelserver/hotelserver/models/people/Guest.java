@@ -17,7 +17,7 @@ public class Guest {
     private Long guestid;
 
     @JsonIgnoreProperties(value = {"guest","room.bookings"})
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @OneToMany(mappedBy = "guest", fetch = FetchType.LAZY)
     private List<Booking> bookings;
 

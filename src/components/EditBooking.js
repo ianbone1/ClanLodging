@@ -8,8 +8,8 @@ class EditBooking extends Component {
     this.state = {
       checkinDate: this.props.booking.bookingdates[0],
       checkoutDate: this.props.booking.bookingdates.slice(-1)[0],
-      guest: this.props.booking.guest,
-      room: this.props.booking.room,
+      guest: this.props.booking.guest._links.self.href,
+      room: this.props.booking.room._links.self.href,
       bookingdates:[],
       partysize: this.props.booking.partysize,
       checkedin: this.props.booking.checkedin,
@@ -47,9 +47,9 @@ class EditBooking extends Component {
       "guest": this.state.guest,
       "room": this.state.room,
       "bookingdates": bookingDateList,
-      "partysize": parseInt(this.state.partysize),
-      "checkedin": false,
-      "billpaid": false}
+      "partysize": this.state.partysize,
+      "checkedin": this.state.checkedin,
+      "billpaid": this.state.billpaid}
 
     const url = `/bookings/${this.props.booking.bookingid}`
     console.log("****** EDITED BOOKING ***** ", booking)
@@ -84,12 +84,12 @@ return(
     <input name = "partysize" type="number" defaultValue={this.state.partysize} onChange = {this.handleChange}/>
 
     <select name="guest" onChange = {this.handleChange}>
-      <option disabled selected value = {this.state.guest}>{this.state.guest.firstname} {this.state.guest.lastname}</option>
+      <option disabled selected value = {this.state.guest._links.self.href}>{this.state.guest.firstname} {this.state.guest.lastname}</option>
       {guest}
     </select>
 
     <select name="room" onChange = {this.handleChange} >
-      <option disabled selected value = {this.state.room}>Number: {this.state.room.roomnumber} {this.state.room.roomtype} £{this.state.room.rate}</option>
+      <option disabled selected value = {this.state.room._links.self.href}>Number: {this.state.room.roomnumber} {this.state.room.roomtype} £{this.state.room.rate}</option>
       {room}
       </select>
 

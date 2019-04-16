@@ -62,10 +62,10 @@ return(
   <div>
     <h2>Edit page</h2>
     <form  onSubmit={this.handleSubmit}>
-    <input name="checkinDate" type="date"  defaultvalue={this.props.booking.bookingDates[0]} onChange = {this.handleChange}/>
-    <input name="checkoutDate"type="date"  defaultvalue={this.props.booking.bookingDates.slice(-1)[0]} onChange = {this.handleChange}/>
+    <input name="checkinDate" type="date"  defaultValue={this.props.booking.bookingDates[0]} onChange = {this.handleChange}/>
+    <input name="checkoutDate"type="date"  defaultValue={this.props.booking.bookingDates.slice(-1)[0]} onChange = {this.handleChange}/>
 
-    <input name = "partySize" type="number" defaultvalue={this.props.booking.partySize} onChange = {this.handleChange}/>
+    <input name = "partySize" type="number" defaultValue={this.props.booking.partySize} onChange = {this.handleChange}/>
 
     <select name="guest" onChange = {this.handleChange}>
       <option disabled selected value = {this.props.booking.guest}>{this.props.booking.guest.firstName} {this.props.booking.guest.lastName}</option>

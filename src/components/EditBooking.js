@@ -6,14 +6,14 @@ class EditBooking extends Component {
   constructor(props){
     super(props);
     this.state = {
-      checkinDate: this.props.booking.bookingdates[0],
-      checkoutDate: this.props.booking.bookingdates.slice(-1)[0],
-      guest: this.props.booking.guest._links.self.href,
-      room: this.props.booking.room._links.self.href,
+      checkinDate: props.booking.bookingdates[0],
+      checkoutDate: props.booking.bookingdates.slice(-1)[0],
+      guest: props.booking["_links"].guest.href,
+      room: props.booking["_links"].room.href,
       bookingdates:[],
-      partysize: this.props.booking.partysize,
-      checkedin: this.props.booking.checkedin,
-      billpaid: this.props.booking.billpaid,
+      partysize: props.booking.partysize,
+      checkedin: props.booking.checkedin,
+      billpaid: props.booking.billpaid,
       redirectMe: false
     }
     this.handleChange = this.handleChange.bind(this);
@@ -51,7 +51,7 @@ class EditBooking extends Component {
       "checkedin": this.state.checkedin,
       "billpaid": this.state.billpaid}
 
-    const url = `/bookings/${this.props.booking.bookingid}`
+    const url = `http://localhost:8080/api/bookings/${this.props.booking.bookingid}`
     console.log("****** EDITED BOOKING ***** ", booking)
     const request = new Requests();
     request.update(url, booking)
@@ -84,12 +84,12 @@ return(
     <input name = "partysize" type="number" defaultValue={this.state.partysize} onChange = {this.handleChange}/>
 
     <select name="guest" onChange = {this.handleChange}>
-      <option disabled selected value = {this.state.guest._links.self.href}>{this.state.guest.firstname} {this.state.guest.lastname}</option>
+      <option disabled selected value = {this.state.guest}>{this.props.booking.guest.firstname} {this.props.booking.guest.lastname}</option>
       {guest}
     </select>
 
     <select name="room" onChange = {this.handleChange} >
-      <option disabled selected value = {this.state.room._links.self.href}>Number: {this.state.room.roomnumber} {this.state.room.roomtype} £{this.state.room.rate}</option>
+      <option disabled selected value = {this.state.room}>Number: {this.props.booking.room.roomnumber} {this.props.booking.room.roomtype} £{this.props.booking.room.rate}</option>
       {room}
       </select>
 

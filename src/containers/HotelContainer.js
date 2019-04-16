@@ -15,9 +15,7 @@ class HotelContainer extends Component {
       guests:[],
       rooms:[],
       bookings: [],
-      editBooking: null,
-      editGuest: null,
-      editRoom:null
+      editBooking: null
     }
     this.findWithAttr = this.findWithAttr.bind(this);
     this.handleDeleteBooking = this.handleDeleteBooking.bind(this);

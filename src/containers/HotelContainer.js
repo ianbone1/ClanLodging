@@ -18,8 +18,8 @@ class HotelContainer extends Component {
       editBooking: null
     }
     this.findWithAttr = this.findWithAttr.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDeleteBooking = this.handleDeleteBooking.bind(this);
+    this.handleEditBooking = this.handleEditBooking.bind(this);
   }
 
   componentDidMount(){
@@ -36,7 +36,8 @@ class HotelContainer extends Component {
         this.setState({
           guests: data[0]._embedded.guests,
           rooms: data[1]._embedded.rooms,
-          bookings: data[2]
+          bookings: data[2],
+          editBooking: null
         })
       })
   }
@@ -50,7 +51,7 @@ class HotelContainer extends Component {
      return -1;
   }
 
-  handleDelete(id){
+  handleDeleteBooking(id){
     const request = new Requests();
     const url = `bookings/${id}`;
     request.delete(url);
@@ -60,14 +61,16 @@ class HotelContainer extends Component {
     this.setState({bookings: prevState})
   }
 
-  handleEdit(id){
+  handleEditBooking(id){
     const index = this.findWithAttr(this.state.bookings, "bookingID", id)
-    const obj = this.state.bookings.splice(index, 1)
-    this.setState({editBooking: obj[0]})
-    console.log(obj[0]);
-    console.log(index);
-    const urlCheck = "http://localhost:8080/bookings/:id"
-    console.log(urlCheck);
+    const bookingToEdit = this.state.bookings.splice(index, 1)
+    console.log("Just set state of editBooking with:" , this.state.editBooking)
+    
+    this.setState({editBooking: bookingToEdit[0]})
+    // console.log(bookingToEdit[0]);
+    // console.log(index);
+    // const urlCheck = "http://localhost:8080/bookings/:id"
+    // console.log(urlCheck);
   }
 
 
@@ -82,7 +85,7 @@ class HotelContainer extends Component {
         <Switch>
 
         <Route exact path = "/bookings" render ={() => {
-          return <BookingContainer rooms={this.state.rooms} guests={this.state.guests} bookings = {this.state.bookings} handleDelete = {this.handleDelete} handleEdit = {this.handleEdit}/>
+          return <BookingContainer rooms={this.state.rooms} guests={this.state.guests} bookings = {this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking} handleEditBooking = {this.handleEditBooking}/>
         }}/>
 
         <Route exact path = "/guests" render ={() => {

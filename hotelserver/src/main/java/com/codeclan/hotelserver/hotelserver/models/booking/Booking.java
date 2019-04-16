@@ -14,56 +14,52 @@ public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookingID;
+    private Long bookingid;
 
     @JsonIgnoreProperties(value="bookings")
     @ManyToOne
-    @JoinColumn(name = "guestID", nullable = false)
+    @JoinColumn(name = "guestid", nullable = false)
     private Guest guest;
 
     @ManyToOne
-    @JoinColumn(name = "roomID", nullable = false)
+    @JoinColumn(name = "roomid", nullable = false)
     private Room room;
 
     @ElementCollection
     @Temporal(TemporalType.DATE)
-    private List<Date> bookingDates;
+    private List<Date> bookingdates;
 
     @Column
-    private Integer partySize;
+    private Integer partysize;
 
     @Column
-    private Boolean checkedIn;
+    private Boolean checkedin;
 
     @Column
-    private Boolean billPaid;
+    private Boolean billpaid;
 
-    public Booking(Guest guest, Room room, List<Date> bookingDates, Integer partySize, Boolean checkedIn, Boolean billPaid) {
+    public Booking(Guest guest, Room room, List<Date> bookingdates, Integer partysize, Boolean checkedin, Boolean billpaid) {
         this.guest = guest;
         this.room = room;
-        this.bookingDates = bookingDates;
-        this.partySize = partySize;
-        this.checkedIn = checkedIn;
-        this.billPaid = billPaid;
+        this.bookingdates = bookingdates;
+        this.partysize = partysize;
+        this.checkedin = checkedin;
+        this.billpaid = billpaid;
     }
 
     public Booking() {
     }
 
-    public Long getBookingID() {
-        return this.bookingID;
+    public Long getBookingid() {
+        return bookingid;
     }
 
-    public void setBookingID(Long bookingID) {
-        this.bookingID = bookingID;
+    public void setBookingid(Long bookingid) {
+        this.bookingid = bookingid;
     }
 
     public Guest getGuest() {
-        return this.guest;
-    }
-
-    public Long getGuestID(){
-        return guest.getGuestID();
+        return guest;
     }
 
     public void setGuest(Guest guest) {
@@ -78,43 +74,43 @@ public class Booking {
         this.room = room;
     }
 
-    public Integer getPartySize() {
-        return partySize;
+    public List<Date> getBookingdates() {
+        return bookingdates;
     }
 
-    public void setPartySize(Integer partySize) {
-        this.partySize = partySize;
+    public void setBookingdates(List<Date> bookingdates) {
+        this.bookingdates = bookingdates;
     }
 
-    public Boolean getCheckedIn() {
-        return checkedIn;
+    public Integer getPartysize() {
+        return partysize;
     }
 
-    public void setCheckedIn(Boolean checkedIn) {
-        this.checkedIn = checkedIn;
+    public void setPartysize(Integer partysize) {
+        this.partysize = partysize;
     }
 
-    public Boolean getBillPaid() {
-        return billPaid;
+    public Boolean getCheckedin() {
+        return checkedin;
     }
 
-    public void setBillPaid(Boolean billPaid) {
-        this.billPaid = billPaid;
+    public void setCheckedin(Boolean checkedin) {
+        this.checkedin = checkedin;
     }
 
-    public List<Date> getBookingDates() {
-        return bookingDates;
+    public Boolean getBillpaid() {
+        return billpaid;
     }
 
-    public void setBookingDates(List<Date> bookingDates) {
-        this.bookingDates = bookingDates;
+    public void setBillpaid(Boolean billpaid) {
+        this.billpaid = billpaid;
     }
 
-    public void addBookingDate(Date newDate){
-        this.bookingDates.add(newDate);
+    public void addBookingdate(Date newdate){
+        this.bookingdates.add(newdate);
     }
 
-    public void removeBookingDate(Date oldDate){
-        this.bookingDates.remove(oldDate);
+    public void removeBookingdate(Date olddate){
+        this.bookingdates.remove(olddate);
     }
 }

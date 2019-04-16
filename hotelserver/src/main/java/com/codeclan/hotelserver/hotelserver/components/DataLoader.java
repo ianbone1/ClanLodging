@@ -127,7 +127,7 @@ public class DataLoader implements ApplicationRunner {
             }
             for (int x = 0; x<(maxRooms/4); x++){
                 int next=roomNumbers.remove(0);
-                Room theRoom=new Room(next,rt, rate);
+                Room theRoom=new Room(next, rt, rate);
                 roomRepository.save(theRoom);
                 allRooms.add(theRoom);
                 System.out.print(".");
@@ -139,11 +139,11 @@ public class DataLoader implements ApplicationRunner {
         System.out.println();
 
         Room room1 = allRooms.get(1);
-        System.out.println("Room 1 ID: " +room1.getRoomID() + " RoomNumber: "+  room1.getRoomNumber() +" "+ room1.getRoomType());
+        System.out.println("Room 1 ID: " +room1.getRoomid() + " RoomNumber: "+  room1.getRoomnumber() +" "+ room1.getRoomtype());
         Room room2 = allRooms.get(47);
-        System.out.println("Room 2 ID: " +room2.getRoomID() + " RoomNumber: "+  room2.getRoomNumber() +" "+ room2.getRoomType());
+        System.out.println("Room 2 ID: " +room2.getRoomid() + " RoomNumber: "+  room2.getRoomnumber() +" "+ room2.getRoomtype());
         Room room3 = allRooms.get(120);
-        System.out.println("Room 3 ID: " +room3.getRoomID() + " RoomNumber: "+  room3.getRoomNumber() +" "+ room3.getRoomType());
+        System.out.println("Room 3 ID: " +room3.getRoomid() + " RoomNumber: "+  room3.getRoomnumber() +" "+ room3.getRoomtype());
 
         System.out.println("Rooms seeded.");
 

@@ -11,5 +11,5 @@ import java.util.List;
 public interface GuestRepository extends JpaRepository<Guest, Long> {
 
     List<Guest> findAll();
-    List<Guest> findAllGuestByLastName(String lastName);
+    List<Guest> findAllGuestByLastname(String lastName);
 }

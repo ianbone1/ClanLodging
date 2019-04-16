@@ -6,14 +6,14 @@ class EditBooking extends Component {
   constructor(props){
     super(props);
     this.state = {
-      checkinDate: '',
-      checkoutDate: '',
-      guest: null,
-      room: null,
+      checkinDate: this.props.booking.bookingDates[0],
+      checkoutDate: this.props.booking.bookingDates.slice(-1)[0],
+      guest: this.props.booking.guest,
+      room: this.props.booking.room,
       bookingDates:[],
-      partySize: '',
-      checkedIn: false,
-      billPaid: false,
+      partySize: this.props.booking.partySize,
+      checkedIn: this.props.booking.checkedIn,
+      billPaid: this.props.booking.billPaid,
       redirectMe: false
     }
     this.handleChange = this.handleChange.bind(this);
@@ -22,24 +22,35 @@ class EditBooking extends Component {
   }
 
   handleChange(event){
+    console.log("Event.target.name:", event.target.name)
+    console.log("Event.target.value:", event.target.value)
     this.setState({[event.target.name]: event.target.value})
+    console.log("Party size is now: ", this.state.partySize)
   }
 
   buildDateList(startDate, endDate){
-    return [startDate,endDate]
-  }
+    const Moment = require('moment');
+    const MomentRange = require('moment-range');
+    const moment = MomentRange.extendMoment(Moment);
+    const start = moment(startDate)
+    const end = moment(endDate)
+    const range = moment.range(start, end)
+    const arrayOfDates = Array.from(range.by('days'))
+    return arrayOfDates
+}
 
   handleSubmit(event){
     event.preventDefault();
     const bookingDateList = this.buildDateList(this.state.checkinDate, this.state.checkoutDate)
-    this.setState({bookingDates: bookingDateList})
+    // this.setState({bookingDates: bookingDateList})
     const booking = {
       "guest": this.state.guest,
       "room": this.state.room,
       "bookingDates": bookingDateList,
-      "partySize": this.state.partySize,
-      "checkedIn": this.state.checkedIn,
-      "billPaid": this.state.billPaid}
+      "partySize": parseInt(this.state.partySize),
+      "checkedIn": false,
+      "billPaid": false}
+
     const url = `/bookings/${this.props.booking.bookingID}`
     console.log("****** EDITED BOOKING ***** ", booking)
     const request = new Requests();
@@ -67,18 +78,18 @@ return(
   <div>
     <h2>Edit page</h2>
     <form  onSubmit={this.handleSubmit}>
-    <input name="checkinDate" type="date"  defaultValue={this.props.booking.bookingDates[0]} onChange = {this.handleChange}/>
-    <input name="checkoutDate"type="date"  defaultValue={this.props.booking.bookingDates.slice(-1)[0]} onChange = {this.handleChange}/>
+    <input name="checkinDate" type="date"  defaultValue={this.state.checkinDate} onChange = {this.handleChange}/>
+    <input name="checkoutDate"type="date"  defaultValue={this.state.checkoutDate} onChange = {this.handleChange}/>
 
-    <input name = "partySize" type="number" defaultValue={this.props.booking.partySize} onChange = {this.handleChange}/>
+    <input name = "partySize" type="number" defaultValue={this.state.partySize} onChange = {this.handleChange}/>
 
     <select name="guest" onChange = {this.handleChange}>
-      <option disabled selected value = {this.props.booking.guest}>{this.props.booking.guest.firstName} {this.props.booking.guest.lastName}</option>
+      <option disabled selected value = {this.state.guest}>{this.state.guest.firstName} {this.state.guest.lastName}</option>
       {guest}
     </select>
 
     <select name="room" onChange = {this.handleChange} >
-      <option disabled selected value = {this.props.booking.room}>Number: {this.props.booking.room.roomNumber} {this.props.booking.room.roomType} £{this.props.booking.room.rate}</option>
+      <option disabled selected value = {this.state.room}>Number: {this.state.room.roomNumber} {this.state.room.roomType} £{this.state.room.rate}</option>
       {room}
       </select>
 

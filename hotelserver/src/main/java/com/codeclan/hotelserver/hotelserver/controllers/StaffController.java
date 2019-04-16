@@ -18,8 +18,8 @@ public class StaffController {
     StaffRepository staffRepository;
 
     @GetMapping("/lastname/{lastname}")
-    public List<Staff> findAllStaffByLastName(@PathVariable String lastname){
-        return staffRepository.findAllStaffByLastName(lastname);
+    public List<Staff> findAllStaffByLastname(@PathVariable String lastname){
+        return staffRepository.findAllStaffByLastname(lastname);
     }
 
 }

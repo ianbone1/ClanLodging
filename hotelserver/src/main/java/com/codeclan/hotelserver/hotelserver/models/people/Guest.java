@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,7 +14,7 @@ public class Guest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long guestID;
+    private Long guestid;
 
     @JsonIgnoreProperties(value = {"guest","room.bookings"})
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
@@ -21,19 +22,19 @@ public class Guest {
     private List<Booking> bookings;
 
     @Column
-    private String firstName;
+    private String firstname;
 
     @Column
-    private String lastName;
+    private String lastname;
 
     @Column
-    private String addressLine1;
+    private String addressline1;
 
     @Column
     private String town;
 
     @Column
-    private String postCode;
+    private String postcode;
 
     @Column
     private String email;
@@ -41,12 +42,13 @@ public class Guest {
     @Column
     private String phone;
 
-    public Guest(String firstName, String lastName, String addressLine1, String town, String postCode, String email, String phone) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.addressLine1 = addressLine1;
+    public Guest(String firstname, String lastname, String addressline1, String town, String postcode, String email, String phone) {
+        this.bookings = new ArrayList<Booking>();
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.addressline1 = addressline1;
         this.town = town;
-        this.postCode = postCode;
+        this.postcode = postcode;
         this.email = email;
         this.phone = phone;
     }
@@ -54,36 +56,44 @@ public class Guest {
     public Guest() {
     }
 
-    public Long getGuestID() {
-        return guestID;
+    public Long getGuestid() {
+        return guestid;
     }
 
-    public void setGuestID(Long guestID) {
-        this.guestID = guestID;
+    public void setGuestid(Long guestid) {
+        this.guestid = guestid;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getAddressLine1() {
-        return addressLine1;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public String getAddressline1() {
+        return addressline1;
+    }
+
+    public void setAddressline1(String addressline1) {
+        this.addressline1 = addressline1;
     }
 
     public String getTown() {
@@ -94,12 +104,12 @@ public class Guest {
         this.town = town;
     }
 
-    public String getPostCode() {
-        return postCode;
+    public String getPostcode() {
+        return postcode;
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
     public String getEmail() {
@@ -116,21 +126,5 @@ public class Guest {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
-
-    public void addBooking(Booking newBooking){
-        this.bookings.add(newBooking);
-    }
-
-    public void removeBooking(Booking oldBooking){
-        this.bookings.remove(oldBooking);
     }
 }

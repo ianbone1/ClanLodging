@@ -21,6 +21,7 @@ delete(url){
 }
 
 update(url, payload){
+  console.log("About to PUT this to database:", payload)
   return fetch(url, {
     method: "PUT",
     headers:{"Content-Type": "application/json"},

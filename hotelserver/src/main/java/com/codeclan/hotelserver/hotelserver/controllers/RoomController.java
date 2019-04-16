@@ -23,19 +23,19 @@ public class RoomController {
     }
 
     @GetMapping("/sorted")
-    public List<Room> findAllByOrderByRoomNumberAsc() {
-        return roomRepository.findAllByOrderByRoomNumberAsc();
+    public List<Room> findAllByOrderByRoomnumberAsc() {
+        return roomRepository.findAllByOrderByRoomnumberAsc();
     }
 
 
-    @GetMapping("/type/{roomType}")
-    public List<Room> findAllRoomByRoomType(@PathVariable RoomType roomType) {
-        return roomRepository.findAllRoomByRoomType(roomType);
+    @GetMapping("/type/{roomtype}")
+    public List<Room> findAllRoomByRoomtype(@PathVariable RoomType roomtype) {
+        return roomRepository.findAllRoomByRoomtype(roomtype);
     }
 
-    @GetMapping("/room/{roomNumber}")
-    public List<Room> findAllRoomByRoomNumber(@PathVariable int roomNumber) {
-        return roomRepository.findAllRoomByRoomNumber(roomNumber);
+    @GetMapping("/room/{roomnumber}")
+    public List<Room> findAllRoomByRoomnumber(@PathVariable int roomnumber) {
+        return roomRepository.findAllRoomByRoomnumber(roomnumber);
     }
 
 }

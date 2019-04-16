@@ -13,8 +13,8 @@ class BookingContainer extends Component{
         <h2>Booking Management</h2>
         <BookingForm rooms={this.props.rooms} guests = {this.props.guests}/>
         <BookingList bookings={this.props.bookings} guests = {this.props.guests}
-         handleDelete = {this.props.handleDelete}
-         handleEdit = {this.props.handleEdit}
+         handleDeleteBooking = {this.props.handleDeleteBooking}
+         handleEditBooking = {this.props.handleEditBooking}
          />
       </div>
     )

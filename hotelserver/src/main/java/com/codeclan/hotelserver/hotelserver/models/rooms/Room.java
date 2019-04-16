@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,13 +15,13 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long roomID;
+    private Long roomid;
 
     @Column
-    private int roomNumber;
+    private int roomnumber;
 
     @Column
-    private RoomType roomType;
+    private RoomType roomtype;
 
     @JsonIgnoreProperties(value = "room")
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
@@ -30,38 +31,38 @@ public class Room {
     @Column
     private double rate;
 
-    public Room(int roomNumber, RoomType roomType, double rate) {
-        this.roomNumber = roomNumber;
-        this.roomType = roomType;
-        this.bookings = null;
-        this.rate =  rate;
+    public Room(int roomnumber, RoomType roomtype, double rate) {
+        this.roomnumber = roomnumber;
+        this.roomtype = roomtype;
+        this.bookings = new ArrayList<Booking>();
+        this.rate = rate;
     }
 
     public Room() {
     }
 
-    public Long getRoomID() {
-        return roomID;
+    public Long getRoomid() {
+        return roomid;
     }
 
-    public void setRoomID(Long roomID) {
-        this.roomID = roomID;
+    public void setRoomid(Long roomid) {
+        this.roomid = roomid;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
+    public int getRoomnumber() {
+        return roomnumber;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setRoomnumber(int roomnumber) {
+        this.roomnumber = roomnumber;
     }
 
-    public RoomType getRoomType() {
-        return roomType;
+    public RoomType getRoomtype() {
+        return roomtype;
     }
 
-    public void setRoomType(RoomType roomType) {
-        this.roomType = roomType;
+    public void setRoomtype(RoomType roomtype) {
+        this.roomtype = roomtype;
     }
 
     public List<Booking> getBookings() {
@@ -70,14 +71,6 @@ public class Room {
 
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
-    }
-
-    public void addBooking(Booking newBooking){
-        this.bookings.add(newBooking);
-    }
-
-    public void removeBooking(Booking oldBooking){
-        this.bookings.remove(oldBooking);
     }
 
     public double getRate() {

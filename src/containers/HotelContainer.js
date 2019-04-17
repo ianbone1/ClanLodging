@@ -62,9 +62,17 @@ class HotelContainer extends Component {
     const checkedIn = {
       "checkedin": true
     }
+
   const request = new Requests();
   request.patch(`/api/bookings/${booking}`, checkedIn)
-  console.log("I am from the checkin booking function: ", booking);
+
+
+  const index = this.findWithAttr(this.state.bookings, "bookingid", booking);
+  const obj = this.state.bookings[index];
+  console.log({...obj, "checkedin": true});
+
+  const newState = [...this.state.bookings, obj]
+  this.setState({bookings: newState})
   }
 
   handleDeleteBooking(id){

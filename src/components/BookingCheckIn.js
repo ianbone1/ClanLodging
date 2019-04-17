@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 
 class BookingCheckIn extends Component {
 
+// TODO: need to dynamically update the checked in list if a booking is checked in
+
 render(){
     return(
 

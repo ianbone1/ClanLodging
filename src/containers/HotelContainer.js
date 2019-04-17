@@ -21,6 +21,7 @@ class HotelContainer extends Component {
     this.handleDeleteBooking = this.handleDeleteBooking.bind(this);
     this.handleEditBooking = this.handleEditBooking.bind(this);
     this.handleDeleteGuest = this.handleDeleteGuest.bind(this);
+    this.handleNewGuest = this.handleNewGuest.bind(this);
   }
 
   componentDidMount(){
@@ -56,7 +57,7 @@ class HotelContainer extends Component {
 
   handleDeleteBooking(id){
     const request = new Requests();
-    const url = `/bookings/${id}`;
+    const url = `/api/bookings/${id}`;
     request.delete(url);
     const prevState = this.state.bookings
     const index = this.findWithAttr(this.state.bookings, "bookingid", id)
@@ -82,13 +83,19 @@ class HotelContainer extends Component {
 
   handleDeleteGuest(id){
     const request = new Requests();
-    const url = `/guests/${id}`;
+    const url = `/api/guests/${id}`;
     console.log(url);
     request.delete(url);
     const prevState = this.state.guests
-    const index = this.findWithAttr(this.state.guests, "key", id)
+    const index = this.findWithAttr(this.state.guests, "guestid", id)
     prevState.splice(index, 1)
     this.setState({guests: prevState})
+  }
+
+  handleNewGuest(newGuest){
+    const prevState = this.state.guests
+    const newState = [...prevState, newGuest]
+    this.setState({guests: newState})
   }
 
 
@@ -107,7 +114,7 @@ class HotelContainer extends Component {
         }}/>
 
         <Route exact path = "/guests" render ={() => {
-          return <GuestContainer guests={this.state.guests} handleDeleteGuest= {this.handleDeleteGuest}/>
+          return <GuestContainer guests={this.state.guests} handleDeleteGuest= {this.handleDeleteGuest} handleNewGuest={this.handleNewGuest}/>
         }}/>
 
         <Route exact path = "/reports" render ={() => {

@@ -8,8 +8,8 @@ const guestNodes = props.guests.map((guest, index) =>{
   return (
     <Guest key={index}
     guest={guest}
-    id={index}
-    handleDeleteGuest={props.handleDeleteGuest}/>
+    handleDeleteGuest={props.handleDeleteGuest}
+    />
   )
 })
 

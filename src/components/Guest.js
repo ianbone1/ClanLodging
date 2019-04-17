@@ -9,7 +9,7 @@ const Guest =(props) => {
    <p>{props.guest.postcode}</p>
    <p>{props.guest.email}</p>
    <p>{props.guest.phone}</p>
-   <button onClick = { () => { if (window.confirm('Are you sure you wish to delete this item?')) props.handleDeleteGuest(props.id)  } }>Remove</button>
+   <button onClick = { () => { if (window.confirm('Are you sure you wish to delete this item?')) props.handleDeleteGuest(props.guest.guestid)  } }>Remove</button>
 </div>
   )
 }

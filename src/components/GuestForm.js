@@ -27,7 +27,16 @@ class GuestForm extends Component {
     const newGuest = this.state;
     console.log(newGuest);
     const request = new Requests();
-    request.post('guests', this.state)
+    request.post('/api/guests', this.state)
+    this.props.handleNewGuest(this.state);
+    this.setState({
+          firstname: "",
+          lastname: "",
+          addressline1: "",
+          town: "",
+          postcode: "",
+          email:"",
+          phone:""})
   }
 
 

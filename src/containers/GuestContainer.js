@@ -9,8 +9,8 @@ class GuestContainer extends Component {
     return(
       <div>
       <h1>Guest Management</h1>
-      <GuestForm/>
-      <GuestList guests = {this.props.guests} handleDeleteGuest= {this.props.handleDeleteGuest}/>
+      <GuestForm handleNewGuest={this.props.handleNewGuest}/>
+      <GuestList guests = {this.props.guests} handleDeleteGuest= {this.props.handleDeleteGuest} />
 
       </div>
     )

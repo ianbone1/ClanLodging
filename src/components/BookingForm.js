@@ -62,7 +62,8 @@ class BookingForm extends Component{
 
     console.log("The Booking: ", booking)
     const request = new Requests();
-    request.post('bookings', booking)
+    request.post('/api/bookings', booking)
+    this.props.handleNewBooking(this.state)
   }
 
   render(){

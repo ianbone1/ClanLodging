@@ -22,6 +22,7 @@ class HotelContainer extends Component {
     this.handleEditBooking = this.handleEditBooking.bind(this);
     this.handleDeleteGuest = this.handleDeleteGuest.bind(this);
     this.handleNewGuest = this.handleNewGuest.bind(this);
+    this.handleNewBooking = this.handleNewBooking.bind(this);
   }
 
   componentDidMount(){
@@ -65,6 +66,12 @@ class HotelContainer extends Component {
     this.setState({bookings: prevState})
   }
 
+  handleNewBooking(newBooking){
+    const prevState = this.state.bookings
+    const newState = [...prevState, newBooking]
+    this.setState({bookings: newState})
+  }
+
   handleEditBooking(booking){
     console.log("Just set state of editBooking with:" , this.state.editBooking)
     this.setState({editBooking: booking})
@@ -99,7 +106,14 @@ class HotelContainer extends Component {
         <Switch>
 
         <Route exact path = "/bookingslocal" render ={() => {
-          return <BookingContainer rooms={this.state.rooms} guests={this.state.guests} bookings = {this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking} handleEditBooking = {this.handleEditBooking} findWithAttr={this.findWithAttr}/>
+          return <BookingContainer rooms={this.state.rooms}
+          guests={this.state.guests}
+          bookings = {this.state.bookings}
+          handleDeleteBooking = {this.handleDeleteBooking}
+          handleEditBooking = {this.handleEditBooking}
+          findWithAttr={this.findWithAttr}
+          handleNewBooking = {this.handleNewBooking}
+          />
         }}/>
 
         <Route exact path = "/guests" render ={() => {

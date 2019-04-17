@@ -8,8 +8,8 @@ class EditBooking extends Component {
     this.state = {
       checkinDate: props.booking.bookingdates[0],
       checkoutDate: props.booking.bookingdates.slice(-1)[0],
-      guest: this.findGuestURL(this.props.booking.bookingid),
-      room: this.findRoomURL(this.props.booking.bookingid),
+      guest: null,
+      room: null,
       bookingdates:[],
       partysize: props.booking.partysize,
       checkedin: props.booking.checkedin,
@@ -21,6 +21,13 @@ class EditBooking extends Component {
     this.buildDateList = this.buildDateList.bind(this);
     this.findGuestURL = this.findGuestURL.bind(this);
     this.findRoomURL = this.findRoomURL.bind(this);
+  }
+
+  componentDidMount(){
+    if (this.booking){
+      this.setState({guest: this.findGuestURL(this.props.booking.bookingid)})
+      this.setState({room: this.findRoomURL(this.props.booking.bookingid)})
+    }
   }
 
   handleChange(event){

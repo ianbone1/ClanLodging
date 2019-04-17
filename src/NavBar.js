@@ -6,9 +6,9 @@ const NavBar = () =>{
     <div className="top_nav_wrapper">
       <nav className="topnav">
         <Link to="/"><p>Home</p></Link>
-        <Link to="bookings"><p>Bookings</p></Link>
-        <Link to="guests"><p>Guests</p></Link>
-        <Link to="reports"><p>Reports</p></Link>
+        <Link to="/bookingslocal"><p>Bookings</p></Link>
+        <Link to="/guests"><p>Guests</p></Link>
+        <Link to="/reports"><p>Reports</p></Link>
       </nav>
     </div>
   )

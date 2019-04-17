@@ -8,8 +8,8 @@ class EditBooking extends Component {
     this.state = {
       checkinDate: props.booking.bookingdates[0],
       checkoutDate: props.booking.bookingdates.slice(-1)[0],
-      guest: props.booking["_links"].guest.href,
-      room: props.booking["_links"].room.href,
+      guest: this.findGuestURL(this.props.booking.bookingid),
+      room: this.findRoomURL(this.props.booking.bookingid),
       bookingdates:[],
       partysize: props.booking.partysize,
       checkedin: props.booking.checkedin,
@@ -19,6 +19,8 @@ class EditBooking extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.buildDateList = this.buildDateList.bind(this);
+    this.findGuestURL = this.findGuestURL.bind(this);
+    this.findRoomURL = this.findRoomURL.bind(this);
   }
 
   handleChange(event){
@@ -26,6 +28,34 @@ class EditBooking extends Component {
     console.log("Event.target.value:", event.target.value)
     this.setState({[event.target.name]: event.target.value})
     console.log("Party size is now: ", this.state.partysize)
+  }
+
+  findGuestURL(bookingid){
+    for (let i =0; i<this.props.guests.length; i++){
+      if (this.props.guests[i]["_embedded"]){
+        for(let b=0;b<this.props.guests[i]["_embedded"].bookings.length; b++){
+          if (this.props.guests[i]["_embedded"].bookings[b].bookingid===bookingid){
+            const roomURL=this.props.guests[i]["_links"].self.href
+            this.setState({guest: roomURL})
+            return roomURL
+          }
+        }
+      }
+    }
+  }
+
+  findRoomURL(bookingid){
+    for (let i =0; i<this.props.rooms.length; i++){
+      if (this.props.rooms[i]["_embedded"]){
+        for(let b=0;b<this.props.rooms[i]["_embedded"].bookings.length; b++){
+          if (this.props.rooms[i]["_embedded"].bookings[b].bookingid===bookingid){
+            const roomURL=this.props.rooms[i]["_links"].self.href
+            this.setState({room: roomURL})
+            return roomURL
+          }
+        }
+      }
+    }
   }
 
   buildDateList(startDate, endDate){
@@ -42,6 +72,9 @@ class EditBooking extends Component {
   handleSubmit(event){
     event.preventDefault();
     const bookingDateList = this.buildDateList(this.state.checkinDate, this.state.checkoutDate)
+
+    console.log("state.Room URL :", this.state.room)
+    // console.log("local Room URL :", roomURL)
     // this.setState({bookingDates: bookingDateList})
     const booking = {
       "guest": this.state.guest,
@@ -51,7 +84,7 @@ class EditBooking extends Component {
       "checkedin": this.state.checkedin,
       "billpaid": this.state.billpaid}
 
-    const url = `bookings/${this.props.booking.bookingid}`
+    const url = `/api/bookings/${this.props.booking.bookingid}`
     console.log("****** EDITED BOOKING ***** ", booking)
     const request = new Requests();
     request.update(url, booking)
@@ -68,10 +101,11 @@ render(){
     return <option key={index} value={guest._links.self.href}>{guest.firstname} {guest.lastname}</option>
   })
 
-  if (!this.props.booking) return null;
+  if (!this.props.booking || !this.props.guests || !this.props.rooms) return null;
+
 
   if (this.state.redirectMe === true) {
-        return <Redirect to='/bookings' />
+        return <Redirect to='/bookingslocal' />
       }
 
 return(

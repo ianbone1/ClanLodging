@@ -25,9 +25,9 @@ class HotelContainer extends Component {
   componentDidMount(){
     const request = new Requests()
 
-    const guestPromise=request.get("guests")
-    const roomPromise=request.get("rooms")
-    const bookingPromise = request.get("bookings")
+    const guestPromise=request.get("/api/guests")
+    const roomPromise=request.get("/api/rooms")
+    const bookingPromise = request.get("/api/bookings")
 
     const promises = [guestPromise, roomPromise, bookingPromise]
 
@@ -55,7 +55,7 @@ class HotelContainer extends Component {
 
   handleDeleteBooking(id){
     const request = new Requests();
-    const url = `bookings/${id}`;
+    const url = `/bookings/${id}`;
     request.delete(url);
     const prevState = this.state.bookings
     const index = this.findWithAttr(this.state.bookings, "bookingid", id)
@@ -90,7 +90,7 @@ class HotelContainer extends Component {
         <h1>ClanLodging</h1>
         <Switch>
 
-        <Route exact path = "/bookings" render ={() => {
+        <Route exact path = "/bookingslocal" render ={() => {
           return <BookingContainer rooms={this.state.rooms} guests={this.state.guests} bookings = {this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking} handleEditBooking = {this.handleEditBooking} findWithAttr={this.findWithAttr}/>
         }}/>
 

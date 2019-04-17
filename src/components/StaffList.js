@@ -10,7 +10,7 @@ const staffNodes = props.staffs.map((staff, index) =>{
   return (
     <Staff key={index}
     staff={staff}
-handleDeleteStaff={props.handleDeleteStaff}
+    handleDeleteStaff={props.handleDeleteStaff}
     />
   )
 })

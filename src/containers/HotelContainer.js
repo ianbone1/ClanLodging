@@ -26,6 +26,7 @@ class HotelContainer extends Component {
     this.handleNewGuest = this.handleNewGuest.bind(this);
     this.handleSubmitBooking = this.handleSubmitBooking.bind(this);
     this.handleNewStaff = this.handleNewStaff.bind(this);
+    this.handleDeleteStaff = this.handleDeleteStaff.bind(this);
   }
 
   componentDidMount(){
@@ -107,6 +108,17 @@ class HotelContainer extends Component {
     this.setState({staffs: newState})
   }
 
+  handleDeleteStaff(id){
+    const request = new Requests();
+    const url = `/api/staffs/${id}`;
+    console.log(url);
+    request.delete(url);
+    const prevState = this.state.staffs
+    const index = this.findWithAttr(this.state.staffs, "staffid", id)
+    prevState.splice(index, 1)
+    this.setState({staffs: prevState})
+  }
+
 
   render(){
 
@@ -139,7 +151,8 @@ class HotelContainer extends Component {
 
         <Route exact path = "/staffs" render ={() => {
           return <StaffContainer staffs={this.state.staffs}
-          handleNewStaff={this.handleNewStaff}/>
+          handleNewStaff={this.handleNewStaff}
+          handleDeleteGuest= {this.handleDeleteGuest}/>
         }}/>
 
         <Route exact path = "/edit" render ={() => {

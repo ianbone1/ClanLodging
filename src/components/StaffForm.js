@@ -27,27 +27,12 @@ class StaffForm extends Component {
 
   handleSubmit(event){
     event.preventDefault();
-    const newStaff = this.state;
-    console.log(newStaff);
     const request = new Requests();
     request.post('/api/staffs', this.state);
     this.props.handleNewStaff(this.state);
-    this.setState({
-      firstname: "",
-      lastname: "",
-      addressline1: "",
-      town: "",
-      postcode: "",
-      email:"",
-      phone:"",
-      position:""
+    event.target.reset();
 
-    })
   }
-
-
-
-
 
   render(){
 

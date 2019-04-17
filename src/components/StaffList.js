@@ -4,24 +4,22 @@ import Staff from './Staff';
 
 const StaffList = (props) => {
 
-const staffNodes = props.staffs.map((staff, index) =>{
+const staffsNode = props.staffs.map((staff, index) =>{
   return (
-    <Staff key={index}
-    firstName={staff.firstName}
-    lastName={staff.lastName} addressLine1={staff.addressLine1}
-    town={staff.town}
-    postCode={staff.postCode}
-    email={staff.email}
-    phone={staff.phone}
-    position={staff.position}>
+    <li key = {index}>
+    <div>
+    <Staff staff = {staff}>
     </Staff>
+    </div>
+    </li>
   )
 })
 
   return (
-    <div className="staff-list">
-    {staffNodes}
-    </div>
+    <ul>
+    <h4>Staff List</h4>
+    {staffsNode}
+    </ul>
   );
 
 

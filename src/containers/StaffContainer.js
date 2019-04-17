@@ -9,7 +9,7 @@ class StaffContainer extends Component {
     return(
       <div>
       <h1>Staff Management</h1>
-      <StaffForm/>
+      <StaffForm />
       <StaffList staffs = {this.props.staffs}/>
 
       </div>

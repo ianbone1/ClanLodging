@@ -4,6 +4,7 @@ import BookingContainer from './BookingContainer';
 import NavBar from '../NavBar';
 import GuestContainer from './GuestContainer';
 import ReportingContainer from './ReportingContainer';
+import StaffContainer from './StaffContainer';
 import EditBooking from '../components/EditBooking';
 import Requests from '../helpers/Requests.js'
 
@@ -15,6 +16,7 @@ class HotelContainer extends Component {
       guests:[],
       rooms:[],
       bookings: [],
+      staffs: [],
       editBooking: null
     }
     this.findWithAttr = this.findWithAttr.bind(this);
@@ -31,15 +33,17 @@ class HotelContainer extends Component {
     const guestPromise=request.get("/api/guests")
     const roomPromise=request.get("/api/rooms")
     const bookingPromise = request.get("/api/bookings")
+    const staffPromise=request.get("/api/staffs")
 
-    const promises = [guestPromise, roomPromise, bookingPromise]
+    const promises = [guestPromise, roomPromise, bookingPromise, staffPromise]
 
     Promise.all(promises)
       .then(data =>{
         this.setState({
           guests: data[0]._embedded.guests,
           rooms: data[1]._embedded.rooms,
-          bookings: data[2]._embedded.bookings
+          bookings: data[2]._embedded.bookings,
+          staffs: data[3]._embedded.staffs
         })
       })
   }
@@ -124,6 +128,10 @@ class HotelContainer extends Component {
 
         <Route exact path = "/reports" render ={() => {
           return <ReportingContainer/>
+        }}/>
+
+        <Route exact path = "/staffs" render ={() => {
+          return <StaffContainer staffs={this.state.staffs} />
         }}/>
 
         <Route exact path = "/edit" render ={() => {

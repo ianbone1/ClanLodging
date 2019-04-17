@@ -19,10 +19,8 @@ public class Guest {
     //    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
 
     @JsonIgnoreProperties(value = {"guest","room.bookings"})
-    @OneToMany(cascade = CascadeType.ALL,
-            mappedBy = "guest",
-            orphanRemoval = true,
-            fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    @OneToMany(mappedBy = "guest", fetch = FetchType.LAZY)
     private List<Booking> bookings;
 
     @Column

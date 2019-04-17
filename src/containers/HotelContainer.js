@@ -25,6 +25,7 @@ class HotelContainer extends Component {
     this.handleDeleteGuest = this.handleDeleteGuest.bind(this);
     this.handleNewGuest = this.handleNewGuest.bind(this);
     this.handleSubmitBooking = this.handleSubmitBooking.bind(this);
+    this.handleNewStaff = this.handleNewStaff.bind(this);
   }
 
   componentDidMount(){
@@ -100,6 +101,12 @@ class HotelContainer extends Component {
     this.setState({guests: newState})
   }
 
+  handleNewStaff(newStaff){
+    const prevState = this.state.staffs
+    const newState = [...prevState, newStaff]
+    this.setState({staffs: newState})
+  }
+
 
   render(){
 
@@ -131,7 +138,8 @@ class HotelContainer extends Component {
         }}/>
 
         <Route exact path = "/staffs" render ={() => {
-          return <StaffContainer staffs={this.state.staffs} />
+          return <StaffContainer staffs={this.state.staffs}
+          handleNewStaff={this.handleNewStaff}/>
         }}/>
 
         <Route exact path = "/edit" render ={() => {

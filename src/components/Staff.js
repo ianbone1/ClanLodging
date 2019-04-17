@@ -12,7 +12,7 @@ const Staff =(props) => {
 <p>{props.staff.email}</p>
 <p>{props.staff.phone}</p>
 <p>{props.staff.position}</p>
-<button>Edit</button>
+<button>Remove Staff Member</button>
 
 </div>
   )

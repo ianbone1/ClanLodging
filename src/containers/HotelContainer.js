@@ -20,6 +20,7 @@ class HotelContainer extends Component {
     this.findWithAttr = this.findWithAttr.bind(this);
     this.handleDeleteBooking = this.handleDeleteBooking.bind(this);
     this.handleEditBooking = this.handleEditBooking.bind(this);
+    this.handleSubmitBooking = this.handleSubmitBooking.bind(this);
   }
 
   componentDidMount(){
@@ -41,11 +42,11 @@ class HotelContainer extends Component {
       })
   }
 
-  findWithAttr(array, attr, value, append="") {
+  findWithAttr(array, attr, value) {
 
      for(var i = 0; i < array.length; i += 1) {
        console.log("findAttrElement: attr: " +array[i])
-         if((array[i][attr]+append) === value) {
+         if((array[i][attr]) === value) {
 
              return i;
          }
@@ -54,13 +55,21 @@ class HotelContainer extends Component {
   }
 
   handleDeleteBooking(id){
+    console.log("About to delete booking id:", id)
     const request = new Requests();
-    const url = `/bookings/${id}`;
+    const url = `/api/bookings/${id}`;
     request.delete(url);
     const prevState = this.state.bookings
     const index = this.findWithAttr(this.state.bookings, "bookingid", id)
     prevState.splice(index, 1)
     this.setState({bookings: prevState})
+  }
+
+  handleSubmitBooking(booking){
+    console.log("About to submit(PUT) this booking:", booking)
+
+    const request = new Requests();
+    request.post('/api/bookings', booking)
   }
 
   handleEditBooking(booking){
@@ -91,7 +100,7 @@ class HotelContainer extends Component {
         <Switch>
 
         <Route exact path = "/bookingslocal" render ={() => {
-          return <BookingContainer rooms={this.state.rooms} guests={this.state.guests} bookings = {this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking} handleEditBooking = {this.handleEditBooking} findWithAttr={this.findWithAttr}/>
+          return <BookingContainer rooms={this.state.rooms} guests={this.state.guests} bookings = {this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking} handleEditBooking = {this.handleEditBooking} handleSubmitBooking={this.handleSubmitBooking} findWithAttr={this.findWithAttr}/>
         }}/>
 
         <Route exact path = "/guests" render ={() => {
@@ -103,7 +112,7 @@ class HotelContainer extends Component {
         }}/>
 
         <Route exact path = "/edit" render ={() => {
-          return <EditBooking booking={this.state.editBooking} rooms={this.state.rooms} guests={this.state.guests}/>
+          return <EditBooking booking={this.state.editBooking} rooms={this.state.rooms} guests={this.state.guests} handleSubmitBooking={this.handleSubmitBooking} handleDeleteBooking={this.handleDeleteBooking} findWithAttr={this.findWithAttr}/>
         }}/>
         </Switch>
         </>

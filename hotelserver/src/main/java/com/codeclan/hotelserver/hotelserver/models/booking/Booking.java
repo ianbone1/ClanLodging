@@ -106,6 +106,10 @@ public class Booking {
         this.billpaid = billpaid;
     }
 
+    public Long getGuestid(){
+        return this.getGuest().getGuestid();
+    }
+
     public void addBookingdate(Date newdate){
         this.bookingdates.add(newdate);
     }

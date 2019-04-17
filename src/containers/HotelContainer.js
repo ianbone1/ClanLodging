@@ -6,6 +6,7 @@ import GuestContainer from './GuestContainer';
 import ReportingContainer from './ReportingContainer';
 import EditBooking from '../components/EditBooking';
 import Requests from '../helpers/Requests.js'
+import CheckInOutContainer from './CheckInOutContainer';
 
 class HotelContainer extends Component {
 
@@ -127,6 +128,10 @@ class HotelContainer extends Component {
         <Route exact path = "/edit" render ={() => {
           return <EditBooking booking={this.state.editBooking} rooms={this.state.rooms} guests={this.state.guests}/>
         }}/>
+
+        <Route exact path = "/checkinout" render ={() => {
+          return <CheckInOutContainer bookings={this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking}/>
+        }} />
         </Switch>
         </>
         </Router>

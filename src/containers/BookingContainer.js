@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import BookingForm from '../components/BookingForm';
 import BookingList from '../components/BookingList';
 
-
-
-
 class BookingContainer extends Component{
 
   render(){

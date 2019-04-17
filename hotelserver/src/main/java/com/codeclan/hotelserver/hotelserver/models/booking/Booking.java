@@ -106,6 +106,10 @@ public class Booking {
         this.billpaid = billpaid;
     }
 
+    public Long getGuestid(){
+        return this.getGuest().getGuestid();
+    }
+
     public void addBookingdate(Date newdate){
         this.bookingdates.add(newdate);
     }
@@ -113,4 +117,15 @@ public class Booking {
     public void removeBookingdate(Date olddate){
         this.bookingdates.remove(olddate);
     }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Booking )) return false;
+//        return bookingid != null && bookingid.equals(((Booking) o).getBookingid());
+//    }
+//    @Override
+//    public int hashCode() {
+//        return 31;
+//    }
 }

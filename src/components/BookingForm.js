@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Requests from '../helpers/Requests.js'
-
 
 class BookingForm extends Component{
   constructor(props){
@@ -17,7 +15,7 @@ class BookingForm extends Component{
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleDates = this.handleDates.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.prepSubmit = this.prepSubmit.bind(this);
     this.handleRooms = this.handleRooms.bind(this);
     this.buildDateList = this.buildDateList.bind(this);
   }
@@ -48,7 +46,7 @@ class BookingForm extends Component{
     // return [startDate,endDate]
   }
 
-  handleSubmit(event){
+  prepSubmit(event){
     event.preventDefault();
     const bookingDateList = this.buildDateList(this.state.checkinDate, this.state.checkoutDate)
     this.setState({bookingdates: bookingDateList})
@@ -61,9 +59,7 @@ class BookingForm extends Component{
       "billpaid": this.state.billpaid}
 
     console.log("The Booking: ", booking)
-    const request = new Requests();
-    request.post('/api/bookings', booking)
-    this.props.handleNewBooking(this.state)
+    this.props.handleSubmitBooking(booking)
   }
 
   render(){
@@ -78,7 +74,7 @@ class BookingForm extends Component{
     return(
       <div>
       <h3>Create new Booking</h3>
-      <form onSubmit={this.handleSubmit} >
+      <form onSubmit={this.prepSubmit} >
         <input name="checkinDate" type="date"  onChange = {this.handleChange}/>
         <input name="checkoutDate"type="date"  onChange = {this.handleChange}/>
         <input name = "partysize" type="number" placeholder = "Party size" min="1" onChange = {this.handleChange}/>

@@ -23,9 +23,14 @@ public class Room {
     @Column
     private RoomType roomtype;
 
+//    @OneToMany(mappedBy = "room")
+//    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+
     @JsonIgnoreProperties(value = "room")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @OneToMany(mappedBy = "room")
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "room",
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
     private List<Booking> bookings;
 
     @Column

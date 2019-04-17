@@ -23,13 +23,6 @@ class EditBooking extends Component {
     this.findRoomURL = this.findRoomURL.bind(this);
   }
 
-  componentDidMount(){
-    if (this.booking){
-      this.setState({guest: this.findGuestURL(this.props.booking.bookingid)})
-      this.setState({room: this.findRoomURL(this.props.booking.bookingid)})
-    }
-  }
-
   handleChange(event){
     console.log("Event.target.name:", event.target.name)
     console.log("Event.target.value:", event.target.value)
@@ -79,6 +72,18 @@ class EditBooking extends Component {
   handleSubmit(event){
     event.preventDefault();
     const bookingDateList = this.buildDateList(this.state.checkinDate, this.state.checkoutDate)
+
+    if (this.state.guest===null){
+      console.log("Getting guest url")
+      const roomURL = this.findGuestURL(this.props.booking.bookingid)
+      this.setState({guest: roomURL})
+    }
+
+    if (this.state.room===null){
+      console.log("Getting room URL")
+      const roomURL = this.findRoomURL(this.props.booking.bookingid)
+      this.setState({room: roomURL})
+    }
 
     console.log("state.Room URL :", this.state.room)
     // console.log("local Room URL :", roomURL)

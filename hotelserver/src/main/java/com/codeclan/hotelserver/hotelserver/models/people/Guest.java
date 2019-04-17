@@ -16,9 +16,13 @@ public class Guest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long guestid;
 
+    //    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+
     @JsonIgnoreProperties(value = {"guest","room.bookings"})
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    @OneToMany(mappedBy = "guest", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL,
+            mappedBy = "guest",
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
     private List<Booking> bookings;
 
     @Column

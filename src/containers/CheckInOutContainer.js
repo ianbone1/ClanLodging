@@ -9,7 +9,7 @@ class CheckInOutContainer extends Component{
       <div>
       <h2>Check in and out </h2>
       <CheckedInList bookings = {this.props.bookings} />
-      <NotCheckedInList bookings = {this.props.bookings} handleDeleteBooking = {this.props.handleDeleteBooking}/>
+      <NotCheckedInList bookings = {this.props.bookings} handleDeleteBooking = {this.props.handleDeleteBooking} handleCheckIn={this.props.handleCheckIn}/>
       </div>
     )
   }

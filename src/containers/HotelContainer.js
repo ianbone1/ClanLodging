@@ -24,6 +24,7 @@ class HotelContainer extends Component {
     this.handleDeleteGuest = this.handleDeleteGuest.bind(this);
     this.handleNewGuest = this.handleNewGuest.bind(this);
     this.handleSubmitBooking = this.handleSubmitBooking.bind(this);
+    this.handleCheckIn = this.handleCheckIn.bind(this);
   }
 
   componentDidMount(){
@@ -55,6 +56,15 @@ class HotelContainer extends Component {
          }
      }
      return -1;
+  }
+
+  handleCheckIn(booking){
+    const checkedIn = {
+      "checkedin": true
+    }
+  const request = new Requests();
+  request.patch(`/api/bookings/${booking}`, checkedIn)
+  console.log("I am from the checkin booking function: ", booking);
   }
 
   handleDeleteBooking(id){
@@ -132,7 +142,7 @@ class HotelContainer extends Component {
         }}/>
 
         <Route exact path = "/checkinout" render ={() => {
-          return <CheckInOutContainer bookings={this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking}/>
+          return <CheckInOutContainer bookings={this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking} handleCheckIn={this.handleCheckIn}/>
         }} />
         </Switch>
         </>

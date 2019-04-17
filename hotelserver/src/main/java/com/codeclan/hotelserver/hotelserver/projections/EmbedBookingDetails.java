@@ -12,6 +12,7 @@ import java.util.List;
 public interface EmbedBookingDetails {
         Long getBookingid();
         List<Date> getBookingdates();
+        Long getGuestid();
         Guest getGuest();
         Room getRoom();
         Boolean getCheckedin();

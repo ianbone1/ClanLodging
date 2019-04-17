@@ -22,7 +22,9 @@ class HotelContainer extends Component {
     this.findWithAttr = this.findWithAttr.bind(this);
     this.handleDeleteBooking = this.handleDeleteBooking.bind(this);
     this.handleEditBooking = this.handleEditBooking.bind(this);
-
+    this.handleDeleteGuest = this.handleDeleteGuest.bind(this);
+    this.handleNewGuest = this.handleNewGuest.bind(this);
+    this.handleSubmitBooking = this.handleSubmitBooking.bind(this);
   }
 
   componentDidMount(){
@@ -46,11 +48,11 @@ class HotelContainer extends Component {
       })
   }
 
-  findWithAttr(array, attr, value, append="") {
+  findWithAttr(array, attr, value) {
 
      for(var i = 0; i < array.length; i += 1) {
        console.log("findAttrElement: attr: " +array[i])
-         if((array[i][attr]+append) === value) {
+         if((array[i][attr]) === value) {
 
              return i;
          }
@@ -59,8 +61,9 @@ class HotelContainer extends Component {
   }
 
   handleDeleteBooking(id){
+    console.log("About to delete booking id:", id)
     const request = new Requests();
-    const url = `/bookings/${id}`;
+    const url = `/api/bookings/${id}`;
     request.delete(url);
     const prevState = this.state.bookings
     const index = this.findWithAttr(this.state.bookings, "bookingid", id)
@@ -68,20 +71,33 @@ class HotelContainer extends Component {
     this.setState({bookings: prevState})
   }
 
+  handleSubmitBooking(booking){
+    console.log("About to submit(PUT) this booking:", booking)
+
+    const request = new Requests();
+    request.post('/api/bookings', booking)
+  }
+
   handleEditBooking(booking){
-    // const index = this.findWithAttr(this.state.bookings, "bookingid", id)
-    // const bookingToEdit = this.state.bookings.splice(index, 1)
     console.log("Just set state of editBooking with:" , this.state.editBooking)
-
     this.setState({editBooking: booking})
-    // this.setState({editRoom: findWithAttr(this.rooms, "_links.self.href",booking._links.room.href)})
-    // this.setState({editGuest: findWithAttr(this.guests, "_links.self.href",booking._links.guest.href)})
+  }
 
+  handleDeleteGuest(id){
+    const request = new Requests();
+    const url = `/api/guests/${id}`;
+    console.log(url);
+    request.delete(url);
+    const prevState = this.state.guests
+    const index = this.findWithAttr(this.state.guests, "guestid", id)
+    prevState.splice(index, 1)
+    this.setState({guests: prevState})
+  }
 
-    // console.log(bookingToEdit[0]);
-    // console.log(index);
-    // const urlCheck = "http://localhost:8080/bookings/:id"
-    // console.log(urlCheck);
+  handleNewGuest(newGuest){
+    const prevState = this.state.guests
+    const newState = [...prevState, newGuest]
+    this.setState({guests: newState})
   }
 
 
@@ -96,11 +112,18 @@ class HotelContainer extends Component {
         <Switch>
 
         <Route exact path = "/bookingslocal" render ={() => {
-          return <BookingContainer rooms={this.state.rooms} guests={this.state.guests} bookings = {this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking} handleEditBooking = {this.handleEditBooking} findWithAttr={this.findWithAttr}/>
+          return <BookingContainer rooms={this.state.rooms}
+          guests={this.state.guests}
+          bookings = {this.state.bookings}
+          handleDeleteBooking = {this.handleDeleteBooking}
+          handleEditBooking = {this.handleEditBooking}
+          handleSubmitBooking={this.handleSubmitBooking}
+          findWithAttr={this.findWithAttr}
+          />
         }}/>
 
         <Route exact path = "/guests" render ={() => {
-          return <GuestContainer/>
+          return <GuestContainer guests={this.state.guests} handleDeleteGuest= {this.handleDeleteGuest} handleNewGuest={this.handleNewGuest}/>
         }}/>
 
         <Route exact path = "/staffs" render ={() => {
@@ -112,7 +135,7 @@ class HotelContainer extends Component {
         }}/>
 
         <Route exact path = "/edit" render ={() => {
-          return <EditBooking booking={this.state.editBooking} rooms={this.state.rooms} guests={this.state.guests}/>
+          return <EditBooking booking={this.state.editBooking} rooms={this.state.rooms} guests={this.state.guests} handleSubmitBooking={this.handleSubmitBooking} handleDeleteBooking={this.handleDeleteBooking} findWithAttr={this.findWithAttr}/>
         }}/>
         </Switch>
         </>

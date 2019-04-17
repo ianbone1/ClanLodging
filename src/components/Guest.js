@@ -2,16 +2,14 @@ import React from 'react';
 
 const Guest =(props) => {
   return (
-<div className="guest">
-<p>{props.firstname}</p>
-<p>{props.lastname}</p>
-<p>{props.addressline1}</p>
-<p>{props.town}</p>
-<p>{props.postcode}</p>
-<p>{props.email}</p>
-<p>{props.phone}</p>
-<button>Edit</button>
-
+   <div className="guest">
+   <p>{props.guest.firstname} {props.lastname}</p>
+   <p>{props.guest.addressline1}</p>
+   <p>{props.guest.town}</p>
+   <p>{props.guest.postcode}</p>
+   <p>{props.guest.email}</p>
+   <p>{props.guest.phone}</p>
+   <button onClick = { () => { if (window.confirm('Are you sure you wish to remove this guest?')) props.handleDeleteGuest(props.guest.guestid)  } }>Remove</button>
 </div>
   )
 }

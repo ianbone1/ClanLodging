@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Requests from '../helpers/Requests.js'
 import {Redirect} from 'react-router-dom';
 
 class EditBooking extends Component {
@@ -21,6 +20,7 @@ class EditBooking extends Component {
     this.buildDateList = this.buildDateList.bind(this);
     this.findGuestURL = this.findGuestURL.bind(this);
     this.findRoomURL = this.findRoomURL.bind(this);
+    this.findGuest = this.findGuest.bind(this);
   }
 
   handleChange(event){
@@ -32,9 +32,9 @@ class EditBooking extends Component {
 
   findGuestURL(bookingid){
     for (let i =0; i<this.props.guests.length; i++){
-      if (this.props.guests[i]["_embedded"]){
-        for(let b=0;b<this.props.guests[i]["_embedded"].bookings.length; b++){
-          if (this.props.guests[i]["_embedded"].bookings[b].bookingid===bookingid){
+      if (this.props.guests[i].bookings){
+        for(let b=0;b<this.props.guests[i].bookings.length; b++){
+          if (this.props.guests[i].bookings[b].bookingid===bookingid){
             const roomURL=this.props.guests[i]["_links"].self.href
             this.setState({guest: roomURL})
             return roomURL
@@ -67,7 +67,17 @@ class EditBooking extends Component {
     const range = moment.range(start, end)
     const arrayOfDates = Array.from(range.by('days'))
     return arrayOfDates
-}
+  }
+
+  findGuest(array, attr, value) {
+     for(var i = 0; i < array.length; i += 1) {
+       console.log("findAttrElement: attr: " +array[i])
+         if((array[i][attr]) === value) {
+             return array[i];
+         }
+     }
+     return -1;
+  }
 
   handleSubmit(event){
     event.preventDefault();
@@ -81,73 +91,74 @@ class EditBooking extends Component {
       "checkedin": this.state.checkedin,
       "billpaid": this.state.billpaid}
 
-      if (this.state.guest===null){
-        const guestURL = this.findGuestURL(this.props.booking.bookingid)
+      if ((this.state.guest==null)){
+        const guest = this.findGuest(this.props.guests,"guestid",this.props.booking.guestid)
+        console.log("the found guest:", guest)
+        const guestURL = guest["_links"].self.href
         booking["guest"]= guestURL
+        console.log("Found guest URL:", booking.guest)
       } else {
         booking["guest"]= this.state.guest
       }
 
-      if (this.state.room===null){
+      if ((this.state.room===null) || (typeof this.state.room === "undefined")){
         const roomURL = this.findRoomURL(this.props.booking.bookingid)
         booking["room"]= roomURL
       } else {
         booking["room"]= this.state.room
       }
-
-
       console.log("booking.room :", booking.room)
 
+      this.props.handleSubmitBooking(booking);
 
-    const url = `/api/bookings/${this.props.booking.bookingid}`
-    console.log("****** EDITED BOOKING ***** ", booking)
-    const request = new Requests();
-    request.update(url, booking)
-    this.setState({redirectMe: true})
-  }
+      this.props.handleDeleteBooking(this.props.booking.bookingid);
 
 
-render(){
-  const room = this.props.rooms.map((room, index) =>{
-    return <option key={index} value={room._links.self.href}>Number: {room.roomnumber} {room.roomtype} £{room.rate}</option>
-  })
-
-  const guest = this.props.guests.map((guest, index) => {
-    return <option key={index} value={guest._links.self.href}>{guest.firstname} {guest.lastname}</option>
-  })
-
-  if (!this.props.booking || !this.props.guests || !this.props.rooms) return null;
+      this.setState({redirectMe: true})
+    }
 
 
-  if (this.state.redirectMe === true) {
+    render(){
+      const room = this.props.rooms.map((room, index) =>{
+        return <option key={index} value={room._links.self.href}>Number: {room.roomnumber} {room.roomtype} £{room.rate}</option>
+      })
+
+      const guest = this.props.guests.map((guest, index) => {
+        return <option key={index} value={guest._links.self.href}>{guest.firstname} {guest.lastname}</option>
+      })
+
+      if (!this.props.booking || !this.props.guests || !this.props.rooms) return null;
+
+
+      if (this.state.redirectMe === true) {
         return <Redirect to='/bookingslocal' />
       }
 
-return(
-  <div>
-    <h2>Edit page</h2>
-    <form  onSubmit={this.handleSubmit}>
-    <input name="checkinDate" type="date"  defaultValue={this.state.checkinDate} onChange = {this.handleChange}/>
-    <input name="checkoutDate"type="date"  defaultValue={this.state.checkoutDate} onChange = {this.handleChange}/>
+      return(
+        <div>
+        <h2>Edit page</h2>
+        <form  onSubmit={this.handleSubmit}>
+        <input name="checkinDate" type="date"  defaultValue={this.state.checkinDate} onChange = {this.handleChange}/>
+        <input name="checkoutDate"type="date"  defaultValue={this.state.checkoutDate} onChange = {this.handleChange}/>
 
-    <input name = "partysize" type="number" defaultValue={this.state.partysize} onChange = {this.handleChange}/>
+        <input name = "partysize" type="number" defaultValue={this.state.partysize} onChange = {this.handleChange}/>
 
-    <select name="guest" onChange = {this.handleChange}>
-      <option disabled selected value = {this.state.guest}>{this.props.booking.guest.firstname} {this.props.booking.guest.lastname}</option>
-      {guest}
-    </select>
+        <select name="guest" onChange = {this.handleChange}>
+        <option disabled selected value = {this.state.guest}>{this.props.booking.guest.firstname} {this.props.booking.guest.lastname}</option>
+        {guest}
+        </select>
 
-    <select name="room" onChange = {this.handleChange} >
-      <option disabled selected value = {this.state.room}>Number: {this.props.booking.room.roomnumber} {this.props.booking.room.roomtype} £{this.props.booking.room.rate}</option>
-      {room}
-      </select>
+        <select name="room" onChange = {this.handleChange} >
+        <option disabled selected value = {this.state.room}>Number: {this.props.booking.room.roomnumber} {this.props.booking.room.roomtype} £{this.props.booking.room.rate}</option>
+        {room}
+        </select>
 
-    <button type="submit">Save Changes</button>
-    </form>
-  </div>
-)
+        <button type="submit">Save Changes</button>
+        </form>
+        </div>
+      )
 
-}
-}
+    }
+  }
 
-export default EditBooking;
+  export default EditBooking;

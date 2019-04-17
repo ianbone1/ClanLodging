@@ -22,7 +22,7 @@ class HotelContainer extends Component {
     this.handleEditBooking = this.handleEditBooking.bind(this);
     this.handleDeleteGuest = this.handleDeleteGuest.bind(this);
     this.handleNewGuest = this.handleNewGuest.bind(this);
-    this.handleNewBooking = this.handleNewBooking.bind(this);
+    this.handleSubmitBooking = this.handleSubmitBooking.bind(this);
   }
 
   componentDidMount(){
@@ -57,6 +57,7 @@ class HotelContainer extends Component {
   }
 
   handleDeleteBooking(id){
+    console.log("About to delete booking id:", id)
     const request = new Requests();
     const url = `/api/bookings/${id}`;
     request.delete(url);
@@ -66,10 +67,11 @@ class HotelContainer extends Component {
     this.setState({bookings: prevState})
   }
 
-  handleNewBooking(newBooking){
-    const prevState = this.state.bookings
-    const newState = [...prevState, newBooking]
-    this.setState({bookings: newState})
+  handleSubmitBooking(booking){
+    console.log("About to submit(PUT) this booking:", booking)
+
+    const request = new Requests();
+    request.post('/api/bookings', booking)
   }
 
   handleEditBooking(booking){
@@ -111,8 +113,8 @@ class HotelContainer extends Component {
           bookings = {this.state.bookings}
           handleDeleteBooking = {this.handleDeleteBooking}
           handleEditBooking = {this.handleEditBooking}
+          handleSubmitBooking={this.handleSubmitBooking}
           findWithAttr={this.findWithAttr}
-          handleNewBooking = {this.handleNewBooking}
           />
         }}/>
 
@@ -125,7 +127,7 @@ class HotelContainer extends Component {
         }}/>
 
         <Route exact path = "/edit" render ={() => {
-          return <EditBooking booking={this.state.editBooking} rooms={this.state.rooms} guests={this.state.guests}/>
+          return <EditBooking booking={this.state.editBooking} rooms={this.state.rooms} guests={this.state.guests} handleSubmitBooking={this.handleSubmitBooking} handleDeleteBooking={this.handleDeleteBooking} findWithAttr={this.findWithAttr}/>
         }}/>
         </Switch>
         </>

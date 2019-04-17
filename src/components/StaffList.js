@@ -2,9 +2,9 @@ import React from 'react';
 import Staff from './Staff';
 
 
-const StaffList = ({staffs}) => {
+const StaffList = (props) => {
 
-const staffNodes = staffs.map((staff, index) =>{
+const staffNodes = props.staff.map((staff, index) =>{
   return (
     <Staff key={index}
     firstName={staff.firstName}
@@ -27,3 +27,30 @@ const staffNodes = staffs.map((staff, index) =>{
 
 }
 export default StaffList;
+
+
+// const BookingList = (props) => {
+//   // Filters and removes checked in bookings
+//
+//   const notCheckedIn = props.bookings.filter((booking) => booking.checkedin === false)
+//   const bookingsNode = notCheckedIn.map((booking, index) =>  {
+//     return (
+//       <li key = {index}>
+//         <div>
+//           <Booking booking={booking} handleDeleteBooking = {props.handleDeleteBooking} handleEditBooking = {props.handleEditBooking}/>
+//         </div>
+//       </li>
+//     )
+//   })
+//
+//
+//
+//     return(
+//       <ul>
+//         <h4>Upcoming Bookings</h4>
+//         {bookingsNode}
+//       </ul>
+//     )
+// }
+//
+// export default BookingList;

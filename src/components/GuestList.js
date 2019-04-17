@@ -2,22 +2,20 @@ import React from 'react';
 import Guest from './Guest';
 
 
-const GuestList = ({guests}) => {
+const GuestList = (props) => {
 
-const guestNodes = guests.map((guest, index) =>{
+const guestNodes = props.guests.map((guest, index) =>{
   return (
     <Guest key={index}
-    firstName={guest.firstname}
-    lastName={guest.lastname} addressLine1={guest.addressline1}
-    town={guest.town}
-    postCode={guest.postcode}
-    email={guest.email}
-    phone={guest.phone}></Guest>
+    guest={guest}
+    id={index}
+    handleDeleteGuest={props.handleDeleteGuest}/>
   )
 })
 
   return (
     <div className="guest-list">
+    <h3>Guest Directory</h3>
     {guestNodes}
     </div>
   );

@@ -20,6 +20,7 @@ class HotelContainer extends Component {
     this.findWithAttr = this.findWithAttr.bind(this);
     this.handleDeleteBooking = this.handleDeleteBooking.bind(this);
     this.handleEditBooking = this.handleEditBooking.bind(this);
+    this.handleDeleteGuest = this.handleDeleteGuest.bind(this);
   }
 
   componentDidMount(){
@@ -79,6 +80,17 @@ class HotelContainer extends Component {
     // console.log(urlCheck);
   }
 
+  handleDeleteGuest(id){
+    const request = new Requests();
+    const url = `/guests/${id}`;
+    console.log(url);
+    request.delete(url);
+    const prevState = this.state.guests
+    const index = this.findWithAttr(this.state.guests, "key", id)
+    prevState.splice(index, 1)
+    this.setState({guests: prevState})
+  }
+
 
   render(){
 
@@ -95,7 +107,7 @@ class HotelContainer extends Component {
         }}/>
 
         <Route exact path = "/guests" render ={() => {
-          return <GuestContainer/>
+          return <GuestContainer guests={this.state.guests} handleDeleteGuest= {this.handleDeleteGuest}/>
         }}/>
 
         <Route exact path = "/reports" render ={() => {

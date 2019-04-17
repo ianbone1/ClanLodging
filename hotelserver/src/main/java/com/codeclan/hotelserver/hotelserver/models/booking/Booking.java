@@ -113,4 +113,15 @@ public class Booking {
     public void removeBookingdate(Date olddate){
         this.bookingdates.remove(olddate);
     }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (!(o instanceof Booking )) return false;
+//        return bookingid != null && bookingid.equals(((Booking) o).getBookingid());
+//    }
+//    @Override
+//    public int hashCode() {
+//        return 31;
+//    }
 }

@@ -23,13 +23,6 @@ class EditBooking extends Component {
     this.findRoomURL = this.findRoomURL.bind(this);
   }
 
-  componentDidMount(){
-    if (this.booking){
-      this.setState({guest: this.findGuestURL(this.props.booking.bookingid)})
-      this.setState({room: this.findRoomURL(this.props.booking.bookingid)})
-    }
-  }
-
   handleChange(event){
     console.log("Event.target.name:", event.target.name)
     console.log("Event.target.value:", event.target.value)
@@ -80,16 +73,31 @@ class EditBooking extends Component {
     event.preventDefault();
     const bookingDateList = this.buildDateList(this.state.checkinDate, this.state.checkoutDate)
 
-    console.log("state.Room URL :", this.state.room)
     // console.log("local Room URL :", roomURL)
     // this.setState({bookingDates: bookingDateList})
     const booking = {
-      "guest": this.state.guest,
-      "room": this.state.room,
       "bookingdates": bookingDateList,
       "partysize": this.state.partysize,
       "checkedin": this.state.checkedin,
       "billpaid": this.state.billpaid}
+
+      if (this.state.guest===null){
+        const guestURL = this.findGuestURL(this.props.booking.bookingid)
+        booking["guest"]= guestURL
+      } else {
+        booking["guest"]= this.state.guest
+      }
+
+      if (this.state.room===null){
+        const roomURL = this.findRoomURL(this.props.booking.bookingid)
+        booking["room"]= roomURL
+      } else {
+        booking["room"]= this.state.room
+      }
+
+
+      console.log("booking.room :", booking.room)
+
 
     const url = `/api/bookings/${this.props.booking.bookingid}`
     console.log("****** EDITED BOOKING ***** ", booking)

@@ -43,11 +43,11 @@ class HotelContainer extends Component {
       })
   }
 
-  findWithAttr(array, attr, value, append="") {
+  findWithAttr(array, attr, value) {
 
      for(var i = 0; i < array.length; i += 1) {
        console.log("findAttrElement: attr: " +array[i])
-         if((array[i][attr]+append) === value) {
+         if((array[i][attr]) === value) {
 
              return i;
          }
@@ -66,19 +66,8 @@ class HotelContainer extends Component {
   }
 
   handleEditBooking(booking){
-    // const index = this.findWithAttr(this.state.bookings, "bookingid", id)
-    // const bookingToEdit = this.state.bookings.splice(index, 1)
     console.log("Just set state of editBooking with:" , this.state.editBooking)
-
     this.setState({editBooking: booking})
-    // this.setState({editRoom: findWithAttr(this.rooms, "_links.self.href",booking._links.room.href)})
-    // this.setState({editGuest: findWithAttr(this.guests, "_links.self.href",booking._links.guest.href)})
-
-
-    // console.log(bookingToEdit[0]);
-    // console.log(index);
-    // const urlCheck = "http://localhost:8080/bookings/:id"
-    // console.log(urlCheck);
   }
 
   handleDeleteGuest(id){

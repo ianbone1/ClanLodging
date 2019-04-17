@@ -16,8 +16,8 @@ public class BookingController {
     @Autowired
     BookingRepository bookingRepository;
 
-    @GetMapping("/")
-    public List<Booking> findAll() {
-        return bookingRepository.findAll();
-    }
+//    @GetMapping("/")
+//    public List<Booking> findAll() {
+//        return bookingRepository.findAll();
+//    }
 }

@@ -4,12 +4,13 @@ import Booking from './Booking';
 
 const BookingList = (props) => {
   // Filters and removes checked in bookings
-  const notCheckedIn = props.bookings.filter((booking) => booking.checkedIn === false)
-  const bookingsNode = notCheckedIn.map((booking, index) => {
+
+  const notCheckedIn = props.bookings.filter((booking) => booking.checkedin === false)
+  const bookingsNode = notCheckedIn.map((booking, index) =>  {
     return (
       <li key = {index}>
         <div>
-          <Booking booking={booking} handleDelete = {props.handleDelete} handleEdit = {props.handleEdit}/>
+          <Booking booking={booking} handleDeleteBooking = {props.handleDeleteBooking} handleEditBooking = {props.handleEditBooking}/>
         </div>
       </li>
     )

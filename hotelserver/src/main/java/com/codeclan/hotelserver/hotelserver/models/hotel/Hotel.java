@@ -8,36 +8,36 @@ public class Hotel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long hotelID;
+    private Long hotelid;
 
     @Column
-    private String hotelName;
+    private String hotelname;
 
     @Column
     private double till;
 
-    public Hotel(String hotelName, double till) {
-        this.hotelName = hotelName;
+    public Hotel(String hotelname, double till) {
+        this.hotelname = hotelname;
         this.till = till;
     }
 
     public Hotel() {
     }
 
-    public Long getHotelID() {
-        return hotelID;
+    public Long getHotelid() {
+        return hotelid;
     }
 
-    public void setHotelID(Long hotelID) {
-        this.hotelID = hotelID;
+    public void setHotelid(Long hotelid) {
+        this.hotelid = hotelid;
     }
 
-    public String getHotelName() {
-        return hotelName;
+    public String getHotelname() {
+        return hotelname;
     }
 
-    public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
+    public void setHotelname(String hotelname) {
+        this.hotelname = hotelname;
     }
 
     public double getTill() {

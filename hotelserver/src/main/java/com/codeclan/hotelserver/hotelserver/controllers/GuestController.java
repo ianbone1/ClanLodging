@@ -23,8 +23,8 @@ public class GuestController {
     }
 
     @GetMapping("/lastname/{lastname}")
-    public List<Guest> findAllGuestByLastName(@PathVariable String lastname){
-        return guestRepository.findAllGuestByLastName(lastname);
+    public List<Guest> findAllGuestByLastname(@PathVariable String lastname){
+        return guestRepository.findAllGuestByLastname(lastname);
     }
 
 }

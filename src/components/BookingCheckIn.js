@@ -11,10 +11,10 @@ const BookingCheckIn = (props) => {
     return(
 
       <div>
-        <h4>{props.booking.guestId}</h4>
+        <h4>{props.booking.guestid}</h4>
         <p>{props.booking.checkinDate}</p>
         <p>{props.booking.checkoutDate}</p>
-        <p>{props.booking.roomId}</p>
+        <p>{props.booking.roomid}</p>
         <Link to={url}><button>Edit</button></Link>
         <button >Check In</button>
         <button>Cancel</button>

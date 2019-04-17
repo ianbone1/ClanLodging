@@ -8,22 +8,22 @@ public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long staffID;
+    private Long staffid;
 
     @Column
-    private String firstName;
+    private String firstname;
 
     @Column
-    private String lastName;
+    private String lastname;
 
     @Column
-    private String addressLine1;
+    private String addressline1;
 
     @Column
     private String town;
 
     @Column
-    private String postCode;
+    private String postcode;
 
     @Column
     private String email;
@@ -34,12 +34,12 @@ public class Staff {
     @Column
     private String position;
 
-    public Staff(String firstName, String lastName, String addressLine1, String town, String postCode, String email, String phone, String position) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.addressLine1 = addressLine1;
+    public Staff(String firstname, String lastname, String addressline1, String town, String postcode, String email, String phone, String position) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.addressline1 = addressline1;
         this.town = town;
-        this.postCode = postCode;
+        this.postcode = postcode;
         this.email = email;
         this.phone = phone;
         this.position = position;
@@ -48,36 +48,36 @@ public class Staff {
     public Staff() {
     }
 
-    public Long getStaffID() {
-        return staffID;
+    public Long getStaffid() {
+        return staffid;
     }
 
-    public void setStaffID(Long staffID) {
-        this.staffID = staffID;
+    public void setStaffid(Long staffid) {
+        this.staffid = staffid;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getAddressLine1() {
-        return addressLine1;
+    public String getAddressline1() {
+        return addressline1;
     }
 
-    public void setAddressLine1(String addressLine1) {
-        this.addressLine1 = addressLine1;
+    public void setAddressline1(String addressline1) {
+        this.addressline1 = addressline1;
     }
 
     public String getTown() {
@@ -88,12 +88,12 @@ public class Staff {
         this.town = town;
     }
 
-    public String getPostCode() {
-        return postCode;
+    public String getPostcode() {
+        return postcode;
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
     public String getEmail() {

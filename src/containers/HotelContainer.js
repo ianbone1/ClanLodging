@@ -18,16 +18,16 @@ class HotelContainer extends Component {
       editBooking: null
     }
     this.findWithAttr = this.findWithAttr.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDeleteBooking = this.handleDeleteBooking.bind(this);
+    this.handleEditBooking = this.handleEditBooking.bind(this);
   }
 
   componentDidMount(){
     const request = new Requests()
 
-    const guestPromise=request.get("guests")
-    const roomPromise=request.get("rooms")
-    const bookingPromise = request.get("bookings/")
+    const guestPromise=request.get("/api/guests")
+    const roomPromise=request.get("/api/rooms")
+    const bookingPromise = request.get("/api/bookings")
 
     const promises = [guestPromise, roomPromise, bookingPromise]
 
@@ -36,38 +36,47 @@ class HotelContainer extends Component {
         this.setState({
           guests: data[0]._embedded.guests,
           rooms: data[1]._embedded.rooms,
-          bookings: data[2]
+          bookings: data[2]._embedded.bookings
         })
       })
   }
 
-  findWithAttr(array, attr, value) {
+  findWithAttr(array, attr, value, append="") {
+
      for(var i = 0; i < array.length; i += 1) {
-         if(array[i][attr] === value) {
+       console.log("findAttrElement: attr: " +array[i])
+         if((array[i][attr]+append) === value) {
+
              return i;
          }
      }
      return -1;
   }
 
-  handleDelete(id){
+  handleDeleteBooking(id){
     const request = new Requests();
-    const url = `bookings/${id}`;
+    const url = `/bookings/${id}`;
     request.delete(url);
     const prevState = this.state.bookings
-    const index = this.findWithAttr(this.state.bookings, "bookingID", id)
+    const index = this.findWithAttr(this.state.bookings, "bookingid", id)
     prevState.splice(index, 1)
     this.setState({bookings: prevState})
   }
 
-  handleEdit(id){
-    const index = this.findWithAttr(this.state.bookings, "bookingID", id)
-    const obj = this.state.bookings.splice(index, 1)
-    this.setState({editBooking: obj[0]})
-    console.log(obj[0]);
-    console.log(index);
-    const urlCheck = "http://localhost:8080/bookings/:id"
-    console.log(urlCheck);
+  handleEditBooking(booking){
+    // const index = this.findWithAttr(this.state.bookings, "bookingid", id)
+    // const bookingToEdit = this.state.bookings.splice(index, 1)
+    console.log("Just set state of editBooking with:" , this.state.editBooking)
+
+    this.setState({editBooking: booking})
+    // this.setState({editRoom: findWithAttr(this.rooms, "_links.self.href",booking._links.room.href)})
+    // this.setState({editGuest: findWithAttr(this.guests, "_links.self.href",booking._links.guest.href)})
+
+
+    // console.log(bookingToEdit[0]);
+    // console.log(index);
+    // const urlCheck = "http://localhost:8080/bookings/:id"
+    // console.log(urlCheck);
   }
 
 
@@ -81,8 +90,8 @@ class HotelContainer extends Component {
         <h1>ClanLodging</h1>
         <Switch>
 
-        <Route exact path = "/bookings" render ={() => {
-          return <BookingContainer rooms={this.state.rooms} guests={this.state.guests} bookings = {this.state.bookings} handleDelete = {this.handleDelete} handleEdit = {this.handleEdit}/>
+        <Route exact path = "/bookingslocal" render ={() => {
+          return <BookingContainer rooms={this.state.rooms} guests={this.state.guests} bookings = {this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking} handleEditBooking = {this.handleEditBooking} findWithAttr={this.findWithAttr}/>
         }}/>
 
         <Route exact path = "/guests" render ={() => {
@@ -94,7 +103,7 @@ class HotelContainer extends Component {
         }}/>
 
         <Route exact path = "/edit" render ={() => {
-          return <EditBooking booking = {this.state.editBooking} rooms={this.state.rooms} guests={this.state.guests}/>
+          return <EditBooking booking={this.state.editBooking} rooms={this.state.rooms} guests={this.state.guests}/>
         }}/>
         </Switch>
         </>

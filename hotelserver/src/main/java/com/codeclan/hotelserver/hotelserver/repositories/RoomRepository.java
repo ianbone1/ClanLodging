@@ -11,8 +11,8 @@ import java.util.List;
 public interface RoomRepository extends JpaRepository<Room, Long> {
 
     List<Room> findAll();
-    List<Room> findAllByOrderByRoomNumberAsc();
-    List<Room> findAllRoomByRoomType(RoomType roomType);
-    List<Room> findAllRoomByRoomNumber(int roomNumber);
+    List<Room> findAllByOrderByRoomnumberAsc();
+    List<Room> findAllRoomByRoomtype(RoomType roomtype);
+    List<Room> findAllRoomByRoomnumber(int roomnumber);
 
 }

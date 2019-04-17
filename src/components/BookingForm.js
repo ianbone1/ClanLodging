@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Requests from '../helpers/Requests.js'
 
+
 class BookingForm extends Component{
   constructor(props){
     super(props);
@@ -9,10 +10,10 @@ class BookingForm extends Component{
       checkoutDate: '',
       guest: null,
       room: null,
-      bookingDates:[],
-      partySize: '',
-      checkedIn: false,
-      billPaid: false
+      bookingdates:[],
+      partysize: '',
+      checkedin: false,
+      billpaid: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleDates = this.handleDates.bind(this);
@@ -50,14 +51,14 @@ class BookingForm extends Component{
   handleSubmit(event){
     event.preventDefault();
     const bookingDateList = this.buildDateList(this.state.checkinDate, this.state.checkoutDate)
-    this.setState({bookingDates: bookingDateList})
+    this.setState({bookingdates: bookingDateList})
     const booking = {
       "guest": this.state.guest,
       "room": this.state.room,
-      "bookingDates": bookingDateList,
-      "partySize": this.state.partySize,
-      "checkedIn": this.state.checkedIn,
-      "billPaid": this.state.billPaid}
+      "bookingdates": bookingDateList,
+      "partysize": this.state.partysize,
+      "checkedin": this.state.checkedin,
+      "billpaid": this.state.billpaid}
 
     console.log("The Booking: ", booking)
     const request = new Requests();
@@ -66,11 +67,11 @@ class BookingForm extends Component{
 
   render(){
     const rooms = this.props.rooms.map((room, index) =>{
-      return <option key={index} value={room._links.self.href}>Number: {room.roomNumber} {room.roomType} £{room.rate}</option>
+      return <option key={index} value={room._links.self.href}>Number: {room.roomnumber} {room.roomtype} £{room.rate}</option>
     })
 
     const guests = this.props.guests.map((guest, index) => {
-      return <option key={index} value={guest._links.self.href}>{guest.firstName} {guest.lastName}</option>
+      return <option key={index} value={guest._links.self.href}>{guest.firstname} {guest.lastname}</option>
     })
 
     return(
@@ -79,7 +80,7 @@ class BookingForm extends Component{
       <form onSubmit={this.handleSubmit} >
         <input name="checkinDate" type="date"  onChange = {this.handleChange}/>
         <input name="checkoutDate"type="date"  onChange = {this.handleChange}/>
-        <input name = "partySize" type="number" placeholder = "Party size" min="1" onChange = {this.handleChange}/>
+        <input name = "partysize" type="number" placeholder = "Party size" min="1" onChange = {this.handleChange}/>
 
         <select name="guest" onChange = {this.handleChange}>
           <option disabled selected>Guest Name</option>

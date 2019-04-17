@@ -8,7 +8,7 @@ constructor(props){
   this.state = {
     bookings: [
       {
-        bookingId: 2,
+        bookingid: 2,
         checkinDate: '2019-04-13',
         checkoutDate: '2019-04-28',
         guestId: 'Not Checked in',

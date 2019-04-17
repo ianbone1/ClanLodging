@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
+import Moment from 'moment'
 
 class BookingForm extends Component{
   constructor(props){
@@ -14,7 +15,8 @@ class BookingForm extends Component{
       checkedin: false,
       billpaid: false,
       roomtype: "SINGLE",
-      redirectMe: false
+      redirectMe: false,
+      today: ""
     }
     this.handleChange = this.handleChange.bind(this);
     this.buildDateList = this.buildDateList.bind(this);
@@ -130,27 +132,32 @@ class BookingForm extends Component{
         return <Redirect to='/' />
       }
 
+      // this.setState({today: Moment().format("YYYY-MM-DD")})
+
       return(
         <div>
         <h3>Create new Booking</h3>
         <form onSubmit={this.prepSubmit}>
 
-        <select name="guest" onChange = {this.handleChange}>
-        <option disabled selected>Guest Name</option>
+        <select name="guest" defaultValue="Guest Name"onChange = {this.handleChange}>
+        <option disabled value="Guest Name">Guest Name</option>
         {guests}
         </select>
 
-        <input name="checkinDate" type="date" onChange={this.handleChange}/>
-        <input name="checkoutDate"type="date" onChange={this.handleChange}/>
-        <input name="partysize"   type="number" placeholder="Party size" min="1" max="4" onChange={this.handleChange}/>
+        <input name="checkinDate" type="date" min={Moment().format("YYYY-MM-DD")}onChange={this.handleChange}/>
+        <input name="checkoutDate"type="date" min={this.state.checkinDate} onChange={this.handleChange}/>
+        <select name="partysize" onChange={this.handleChange}>
+          <option key="1" value="1">1</option>
+          <option key="2" value="2">2</option>
+          <option key="3" value="3">3</option>
+          <option key="4" value="4">4</option>
+        </select>
 
-        <select name="roomtype" onChange={this.handleChange}>
-        <option disabled selected>Room Type</option>
+        <select name="roomtype" defaultValue={this.state.roomType} onChange={this.handleChange}>
         {roomtypes()}
         </select>
 
-        <select name="room" onChange = {this.handleChange}>
-        <option disabled selected>Pick Room</option>
+        <select name="room" defaultValue="1" onChange = {this.handleChange}>
         {rooms()}
         </select>
 

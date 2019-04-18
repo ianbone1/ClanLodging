@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-// import './NavBar.css'
+import './NavBar.css'
 const NavBar = () =>{
   return(
     <div className="top_nav_wrapper">

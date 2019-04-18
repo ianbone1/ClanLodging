@@ -8,6 +8,7 @@ import StaffContainer from './StaffContainer';
 import EditBooking from '../components/EditBooking';
 import Requests from '../helpers/Requests.js'
 import CheckInOutContainer from './CheckInOutContainer';
+import './HotelContainer.css'
 
 class HotelContainer extends Component {
 
@@ -143,11 +144,16 @@ class HotelContainer extends Component {
   render(){
 
     return(
-      <div>
+      <div className="HotelContainer">
         <Router>
-        <>
-        <NavBar/>
-        <h1>ClanLodging</h1>
+        <div className="PageHeader">
+        ClanLodging
+        </div>
+        <div className="NavBar">
+          <NavBar />
+        </div>
+
+        <div className="PageContainer">
         <Switch>
 
         <Route exact path = "/bookingslocal" render ={() => {
@@ -183,7 +189,7 @@ class HotelContainer extends Component {
           return <CheckInOutContainer bookings={this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking} handleCheckIn={this.handleCheckIn}/>
         }} />
         </Switch>
-        </>
+        </div>
         </Router>
       </div>
     )

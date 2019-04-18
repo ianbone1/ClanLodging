@@ -1,5 +1,6 @@
 import React from 'react';
 import Guest from './Guest';
+import '../containers/FormContainer.css'
 
 
 const GuestList = (props) => {

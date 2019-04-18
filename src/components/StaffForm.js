@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react';
 import Requests from '../helpers/Requests.js'
+import './InputForm.css'
 
 class StaffForm extends Component {
   constructor(props){
@@ -40,7 +41,7 @@ class StaffForm extends Component {
 
       <>
         <h3>Create Staff Member</h3>
-          <div className="">
+          <div className="inputForm">
             <form onSubmit ={this.handleSubmit}>
 
               <div className="field">
@@ -115,9 +116,11 @@ class StaffForm extends Component {
                       </div>
                   </div>
 
-                  <button type="submit" onSubmit = {this.handleSubmit}>Save</button>
-      </form>
-</div>
+                  <div className="field">
+                    <button type="submit" onSubmit = {this.handleSubmit}>Save</button>
+                  </div>
+            </form>
+          </div>
 
       </>
     );

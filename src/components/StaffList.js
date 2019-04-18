@@ -1,25 +1,24 @@
-
-
 import React from 'react';
 import Staff from './Staff';
-
+import '../containers/FormContainer.css'
 
 const StaffList = (props) => {
 
 const staffNodes = props.staffs.map((staff, index) =>{
   return (
-    <Staff key={index}
-    staff={staff}
+    <div key={index} className="Form">
+    <Staff staff={staff}
     handleDeleteStaff={props.handleDeleteStaff}
     />
+    </div>
   )
 })
 
   return (
-    <div className="staff-list">
-    <h3>Staff List</h3>
+    <ul>
+    <h4>Staff List</h4>
     {staffNodes}
-    </div>
+    </ul>
   );
 
 

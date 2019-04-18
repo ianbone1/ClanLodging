@@ -4,7 +4,6 @@
   width: 100%;
   height: auto;
   opacity: 0.9;
-  padding: 2px;
   /* background-color: blue; */
 }
 
@@ -13,7 +12,6 @@
   width:100%;
   justify-content: center;
   letter-spacing: 1px;
-  padding: 2px;
 }
 
 .inputLabel{
@@ -30,5 +28,5 @@
   align-items: flex-start;
   width: 50%;
   opacity: 0.95;
-  padding-left:10px ;
+  padding-left:10px;
 }

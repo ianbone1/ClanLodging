@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 import './NavBar.css'
 const NavBar = () =>{
   return(
-    <div className="top_nav_wrapper">
-      <nav className="topnav">
+    <div className="top-nav">
+      <nav>
         <Link to="/"><p>Home</p></Link>
         <Link to="/bookingslocal"><p>Bookings</p></Link>
         <Link to="/guests"><p>Guests</p></Link>

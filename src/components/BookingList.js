@@ -1,6 +1,6 @@
 import React from 'react';
 import Booking from './Booking';
-import '../containers/FormContainer.css'
+
 
 const BookingList = (props) => {
   // Filters and removes checked in bookings
@@ -8,7 +8,7 @@ const BookingList = (props) => {
   const notCheckedIn = props.bookings.filter((booking) => booking.checkedin === false)
   const bookingsNode = notCheckedIn.map((booking, index) =>  {
     return (
-      <div key={index} className="Form">
+      <div key={index}>
           <Booking booking={booking} handleDeleteBooking = {props.handleDeleteBooking} handleEditBooking = {props.handleEditBooking}/>
       </div>
     )
@@ -17,10 +17,14 @@ const BookingList = (props) => {
 
 
     return(
-      <ul>
+      <div>
+        <div className="formHeader">
         <h4>Upcoming Bookings</h4>
+        </div>
+        <div className="formBody">
         {bookingsNode}
-      </ul>
+        </div>
+      </div>
     )
 }
 

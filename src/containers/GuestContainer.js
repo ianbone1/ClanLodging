@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import GuestForm from '../components/GuestForm'
 import GuestList from '../components/GuestList'
-import "./FormContainer.css"
+
 
 class GuestContainer extends Component {
 

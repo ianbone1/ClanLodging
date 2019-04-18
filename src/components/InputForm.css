@@ -1,32 +1,97 @@
-.inputForm{
-  display:inline-flex;
-  flex-direction: column;
+.formHeader{
+  height: 30px;
   width: 100%;
-  height: auto;
-  opacity: 0.9;
-  /* background-color: blue; */
 }
 
-.field{
+.formBody{
+  height: 450px;
+  width: 100%;
+  overflow-y: scroll;
+
+}
+
+.formField {
+  width: 100%;
   display: flex;
-  width:100%;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  letter-spacing: 1px;
+  margin: 3px 0 3px 0;
 }
 
-.inputLabel{
-  padding: 5px 5px;
-  display:flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+
+
+.formField label {
+  width: 20%;
+}
+
+.formControl {
   width: 50%;
-  opacity: 0.9;
+  padding: 3px;
 }
 
-.inputField{
+
+.form{
   display: flex;
-  align-items: flex-start;
-  width: 50%;
-  opacity: 0.95;
-  padding-left:10px;
+  justify-content: center;
+  flex-wrap: wrap
 }
+
+.buttonField{
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 3px;
+}
+
+.buttonControl {
+  width: 120px;
+  height: 35px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Nothing important here */

@@ -11,20 +11,15 @@
   left: 0px;
   width: 100%;
   background-color: black;
-  z-index: +1;
   color: silver;
 }
 
 .PageHeader{
-  z-index: +1;
   width: 100%;
   position: fixed;
   font-size: 20px;
   text-align: center;
-  padding-top: 5px;
-  padding-right: 16px;
-  padding-bottom: 5px;
-  padding-left: 14px;
+  padding: 10px 0 10px 0;
   background-color: #333;
 }
 

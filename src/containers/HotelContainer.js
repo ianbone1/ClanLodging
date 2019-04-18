@@ -170,7 +170,7 @@ class HotelContainer extends Component {
         <div className="PageHeader">
         ClanLodging
         </div>
-        <div className="NavBar">
+        <div>
           <NavBar />
         </div>
 

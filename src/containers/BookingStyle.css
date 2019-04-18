@@ -1,0 +1,22 @@
+
+.BookingContainer{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.BookingContainerHeader{
+  width: 100%;
+  height: 80px;
+}
+
+.BookingFormContainer{
+  width: 50%;
+  height: 100%;
+}
+
+.BookingListContainer{
+  width: 50%;
+  height: 100%;
+}

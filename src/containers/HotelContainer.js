@@ -26,12 +26,10 @@ class HotelContainer extends Component {
     this.handleDeleteGuest = this.handleDeleteGuest.bind(this);
     this.handleNewGuest = this.handleNewGuest.bind(this);
     this.handleSubmitBooking = this.handleSubmitBooking.bind(this);
-<<<<<<< HEAD
     this.handleCheckIn = this.handleCheckIn.bind(this);
-=======
     this.handleNewStaff = this.handleNewStaff.bind(this);
     this.handleDeleteStaff = this.handleDeleteStaff.bind(this);
->>>>>>> develop
+
   }
 
   componentDidMount(){

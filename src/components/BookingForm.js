@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import Moment from 'moment'
+import './BookingForm.css'
 
 class BookingForm extends Component{
   constructor(props){
@@ -135,35 +136,82 @@ class BookingForm extends Component{
       // this.setState({today: Moment().format("YYYY-MM-DD")})
 
       return(
-        <div>
-        <h3>Create new Booking</h3>
-        <form onSubmit={this.prepSubmit}>
+        <>
+          <h3>Create new Booking</h3>
+          <div className="inputForm">
+            <form onSubmit={this.prepSubmit}>
 
-        <select name="guest" defaultValue="Guest Name"onChange = {this.handleChange}>
-        <option disabled value="Guest Name">Guest Name</option>
-        {guests}
-        </select>
+              <div className="field">
+                <div className="inputLabel">
+                  <label for="guest">Select Guest </label>
+                </div>
+                <div className="inputField">
+                  <select id="guest" name="guest" defaultValue="Guest Name"onChange = {this.handleChange}>
+                    <option disabled value="Guest Name">Guest Name</option>
+                    {guests}
+                  </select>
+                </div>
+              </div>
 
-        <input name="checkinDate" type="date" min={Moment().format("YYYY-MM-DD")}onChange={this.handleChange}/>
-        <input name="checkoutDate"type="date" min={this.state.checkinDate} onChange={this.handleChange}/>
-        <select name="partysize" onChange={this.handleChange}>
-          <option key="1" value="1">1</option>
-          <option key="2" value="2">2</option>
-          <option key="3" value="3">3</option>
-          <option key="4" value="4">4</option>
-        </select>
+              <div className="field">
+                <div className="inputLabel">
+                  <label for="checkinDate">Check In </label>
+                </div>
+                <div className="inputField">
+                  <input id="checkinDate" name="checkinDate" type="date" min={Moment().format("YYYY-MM-DD")}onChange={this.handleChange}/>
+                </div>
+              </div>
 
-        <select name="roomtype" defaultValue={this.state.roomType} onChange={this.handleChange}>
-        {roomtypes()}
-        </select>
+              <div className="field">
+                <div className="inputLabel">
+                  <label for="checkoutDate">Check Out: </label>
+                </div>
+                <div className="inputField">
+                  <input id="checkoutDate" name="checkoutDate"type="date" min={this.state.checkinDate} onChange={this.handleChange}/>
+                </div>
+              </div>
 
-        <select name="room" defaultValue="1" onChange = {this.handleChange}>
-        {rooms()}
-        </select>
+              <div className="field">
+                <div className="inputLabel">
+                  <label for="partysize">Party Size </label>
+                </div>
+                <div className="inputField">
+                  <select id="partysize" name="partysize" onChange={this.handleChange}>
+                    <option key="1" value="1">1</option>
+                    <option key="2" value="2">2</option>
+                    <option key="3" value="3">3</option>
+                    <option key="4" value="4">4</option>
+                  </select>
+                </div>
+              </div>
 
-        <button type="submit">Create Booking</button>
-        </form>
-        </div>
+              <div className="field">
+                <div className="inputLabel">
+                  <label for="roomtype">Room Type </label>
+                </div>
+                <div className="inputField">
+                  <select id="roomtype" name="roomtype" defaultValue={this.state.roomType} onChange={this.handleChange}>
+                    {roomtypes()}
+                  </select>
+                </div>
+              </div>
+
+              <div className="field">
+                <div className="inputLabel">
+                  <label for="room">Room # </label>
+                </div>
+                <div className="inputField">
+                  <select id="room" name="room" defaultValue="1" onChange = {this.handleChange}>
+                  {rooms()}
+                  </select>
+                </div>
+              </div>
+              <div className="field">
+                <button type="submit">Create Booking</button>
+              </div>
+            </form>
+          </div>
+        </>
       )
     }
   }

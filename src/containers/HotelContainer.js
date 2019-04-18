@@ -4,7 +4,6 @@ import BookingContainer from './BookingContainer';
 import NavBar from '../NavBar';
 import GuestContainer from './GuestContainer';
 import ReportingContainer from './ReportingContainer';
-import StaffContainer from './StaffContainer';
 import EditBooking from '../components/EditBooking';
 import StaffContainer from './StaffContainer';
 import Requests from '../helpers/Requests.js'

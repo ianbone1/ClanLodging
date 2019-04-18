@@ -76,9 +76,10 @@ class HotelContainer extends Component {
 
   const index = this.findWithAttr(this.state.bookings, "bookingid", booking);
   const obj = this.state.bookings[index];
-  console.log({...obj, "checkedin": true});
-
-  const newState = [...this.state.bookings, obj]
+  obj.checkedin = true;
+  const prevState = this.state.bookings;
+  prevState.splice(index, 1)
+  const newState = [...prevState, obj]
   this.setState({bookings: newState})
   }
 

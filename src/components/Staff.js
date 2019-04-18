@@ -12,7 +12,13 @@ const Staff =(props) => {
 <p>{props.staff.email}</p>
 <p>{props.staff.phone}</p>
 <p>{props.staff.position}</p>
+<<<<<<< HEAD
 <button>Edit</button>
+=======
+<button onClick = { () => { if (window.confirm('Are you sure you wish to remove this staff member?'))
+props.handleDeleteStaff(props.staff.staffid)  } }
+>Remove Staff Member</button>
+>>>>>>> develop
 
 </div>
   )

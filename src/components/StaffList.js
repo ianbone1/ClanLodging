@@ -1,25 +1,25 @@
+
+
 import React from 'react';
 import Staff from './Staff';
 
 
 const StaffList = (props) => {
 
-const staffsNode = props.staffs.map((staff, index) =>{
+const staffNodes = props.staffs.map((staff, index) =>{
   return (
-    <li key = {index}>
-    <div>
-    <Staff staff = {staff}>
-    </Staff>
-    </div>
-    </li>
+    <Staff key={index}
+    staff={staff}
+    handleDeleteStaff={props.handleDeleteStaff}
+    />
   )
 })
 
   return (
-    <ul>
-    <h4>Staff List</h4>
-    {staffsNode}
-    </ul>
+    <div className="staff-list">
+    <h3>Staff List</h3>
+    {staffNodes}
+    </div>
   );
 
 

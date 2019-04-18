@@ -1,26 +1,24 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, {Component} from 'react';
 
 
-const BookingCheckIn = (props) => {
+class BookingCheckIn extends Component {
 
-  // Should be returning the unique booking to the edit component... eventually
-  const url = `/bookings/edit/${props.booking.key}`;
+// TODO: need to dynamically update the checked in list if a booking is checked in
 
-
+render(){
     return(
 
       <div>
-        <h4>{props.booking.guestid}</h4>
-        <p>{props.booking.checkinDate}</p>
-        <p>{props.booking.checkoutDate}</p>
-        <p>{props.booking.roomid}</p>
-        <Link to={url}><button>Edit</button></Link>
-        <button >Check In</button>
-        <button>Cancel</button>
-
+        <h4>{this.props.booking.guest.firstname} {this.props.booking.guest.lastname}</h4>
+        <p>Checkin: {this.props.booking.bookingdates[0]}</p>
+        <p>Checkout: {this.props.booking.bookingdates.slice(-1)[0]}</p>
+        <p>Room: {this.props.booking.room.roomnumber}</p>
+        <button onClick={() => { this.props.handleCheckIn(this.props.booking.bookingid) }}>Check In</button>
+        <button onClick = { () => { if (window.confirm('Are you sure you wish to remove this booking?'))
+        this.props.handleDeleteBooking(this.props.booking.bookingid)}}>Cancel</button>
       </div>
     )
+}
 }
 
 export default BookingCheckIn;

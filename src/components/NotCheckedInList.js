@@ -8,7 +8,7 @@ const NotCheckedInList = (props) =>{
     return (
       <li key = {index}>
         <div>
-          <BookingCheckIn booking={booking}/>
+          <BookingCheckIn booking={booking} handleDeleteBooking={props.handleDeleteBooking} handleCheckIn={props.handleCheckIn}/>
         </div>
       </li>
     )

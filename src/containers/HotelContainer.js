@@ -4,9 +4,12 @@ import BookingContainer from './BookingContainer';
 import NavBar from '../NavBar';
 import GuestContainer from './GuestContainer';
 import ReportingContainer from './ReportingContainer';
+import StaffContainer from './StaffContainer';
 import EditBooking from '../components/EditBooking';
 import StaffContainer from './StaffContainer';
 import Requests from '../helpers/Requests.js'
+import CheckInOutContainer from './CheckInOutContainer';
+import './HotelContainer.css'
 
 class HotelContainer extends Component {
 
@@ -16,7 +19,7 @@ class HotelContainer extends Component {
       guests:[],
       rooms:[],
       bookings: [],
-      staff:[],
+      staffs: [],
       editBooking: null
     }
     this.findWithAttr = this.findWithAttr.bind(this);
@@ -25,6 +28,10 @@ class HotelContainer extends Component {
     this.handleDeleteGuest = this.handleDeleteGuest.bind(this);
     this.handleNewGuest = this.handleNewGuest.bind(this);
     this.handleSubmitBooking = this.handleSubmitBooking.bind(this);
+    this.handleCheckIn = this.handleCheckIn.bind(this);
+    this.handleNewStaff = this.handleNewStaff.bind(this);
+    this.handleDeleteStaff = this.handleDeleteStaff.bind(this);
+
   }
 
   componentDidMount(){
@@ -58,6 +65,24 @@ class HotelContainer extends Component {
          }
      }
      return -1;
+  }
+
+  handleCheckIn(booking){
+    const checkedIn = {
+      "checkedin": true
+    }
+
+  const request = new Requests();
+  request.patch(`/api/bookings/${booking}`, checkedIn)
+
+
+  const index = this.findWithAttr(this.state.bookings, "bookingid", booking);
+  const obj = this.state.bookings[index];
+  obj.checkedin = true;
+  const prevState = this.state.bookings;
+  prevState.splice(index, 1)
+  const newState = [...prevState, obj]
+  this.setState({bookings: newState})
   }
 
   handleDeleteBooking(id){
@@ -100,15 +125,37 @@ class HotelContainer extends Component {
     this.setState({guests: newState})
   }
 
+  handleNewStaff(newStaff){
+    const prevState = this.state.staffs
+    const newState = [...prevState, newStaff]
+    this.setState({staffs: newState})
+  }
+
+  handleDeleteStaff(id){
+    const request = new Requests();
+    const url = `/api/staffs/${id}`;
+    console.log(url);
+    request.delete(url);
+    const prevState = this.state.staffs
+    const index = this.findWithAttr(this.state.staffs, "staffid", id)
+    prevState.splice(index, 1)
+    this.setState({staffs: prevState})
+  }
+
 
   render(){
 
     return(
-      <div>
+      <div className="HotelContainer">
         <Router>
-        <>
-        <NavBar/>
-        <h1>ClanLodging</h1>
+        <div className="PageHeader">
+        ClanLodging
+        </div>
+        <div className="NavBar">
+          <NavBar />
+        </div>
+
+        <div className="PageContainer">
         <Switch>
 
         <Route exact path = "/bookingslocal" render ={() => {
@@ -134,11 +181,21 @@ class HotelContainer extends Component {
           return <ReportingContainer/>
         }}/>
 
+        <Route exact path = "/staffs" render ={() => {
+          return <StaffContainer staffs={this.state.staffs}
+          handleNewStaff={this.handleNewStaff}
+          handleDeleteGuest= {this.handleDeleteGuest}/>
+        }}/>
+
         <Route exact path = "/edit" render ={() => {
           return <EditBooking booking={this.state.editBooking} rooms={this.state.rooms} guests={this.state.guests} handleSubmitBooking={this.handleSubmitBooking} handleDeleteBooking={this.handleDeleteBooking} findWithAttr={this.findWithAttr}/>
         }}/>
+
+        <Route exact path = "/checkinout" render ={() => {
+          return <CheckInOutContainer bookings={this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking} handleCheckIn={this.handleCheckIn}/>
+        }} />
         </Switch>
-        </>
+        </div>
         </Router>
       </div>
     )

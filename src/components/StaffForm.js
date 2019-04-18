@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> develop
 import React, {Component} from 'react';
 import Requests from '../helpers/Requests.js'
 
@@ -25,15 +30,12 @@ class StaffForm extends Component {
 
   handleSubmit(event){
     event.preventDefault();
-    const newStaff = this.state;
-    console.log(newStaff);
     const request = new Requests();
-    request.post('/api/staffs', this.state)
+    request.post('/api/staffs', this.state);
+    this.props.handleNewStaff(this.state);
+    event.target.reset();
+
   }
-
-
-
-
 
   render(){
 

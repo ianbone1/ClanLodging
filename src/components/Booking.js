@@ -9,7 +9,7 @@ const Booking = (props) =>{
     return(
       <div>
         <p>Name: {props.booking.guest.firstname} {props.booking.guest.lastname}</p>
-        <p>Room: {props.booking.room.roomnumber}</p>
+        <p>Room #: {props.booking.room.roomnumber} {props.booking.room.roomtype}</p>
         <p>Checkin Date: {props.booking.bookingdates[0]}</p>
         <p>Checkout Date: {props.booking.bookingdates.slice(-1)[0]}</p>
         <p>Party size: {props.booking.partysize}</p>

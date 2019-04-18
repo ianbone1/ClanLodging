@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import BookingForm from '../components/BookingForm';
 import BookingList from '../components/BookingList';
-import "./BookingContainer.css"
+import "./FormContainer.css"
 
 class BookingContainer extends Component{
 
@@ -9,7 +9,7 @@ class BookingContainer extends Component{
     return(
       <div className="BookingContainer">
         <h2>Booking Management</h2>
-        <div className="BookingForm">
+        <div className="Form">
           <BookingForm rooms={this.props.rooms} guests = {this.props.guests} handleSubmitBooking={this.props.handleSubmitBooking}/>
         </div>
         <div className="BookingList">

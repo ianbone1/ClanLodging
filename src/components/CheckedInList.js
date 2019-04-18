@@ -3,12 +3,12 @@ import CheckOut from './CheckOut';
 
 const CheckedInList = (props) =>{
   // Filters and removes checked in bookings
-  const checkedIn = props.bookings.filter((booking) => booking.checkedin === true)
+  const checkedIn = props.bookings.filter((booking) => booking.checkedin === true && booking.billpaid === false)
   const bookingsNode = checkedIn.map((booking, index) => {
     return (
       <li key = {index}>
         <div>
-          <CheckOut booking={booking}/>
+          <CheckOut booking={booking} handleCheckOut = {props.handleCheckOut}/>
         </div>
       </li>
     )

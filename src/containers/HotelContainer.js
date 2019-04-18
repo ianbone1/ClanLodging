@@ -19,7 +19,8 @@ class HotelContainer extends Component {
       rooms:[],
       bookings: [],
       staffs: [],
-      editBooking: null
+      editBooking: null,
+      pastBookings:[]
     }
     this.findWithAttr = this.findWithAttr.bind(this);
     this.handleDeleteBooking = this.handleDeleteBooking.bind(this);
@@ -30,7 +31,7 @@ class HotelContainer extends Component {
     this.handleCheckIn = this.handleCheckIn.bind(this);
     this.handleNewStaff = this.handleNewStaff.bind(this);
     this.handleDeleteStaff = this.handleDeleteStaff.bind(this);
-
+    this.handleCheckOut = this.handleCheckOut.bind(this);
   }
 
   componentDidMount(){
@@ -141,6 +142,25 @@ class HotelContainer extends Component {
     this.setState({staffs: prevState})
   }
 
+  handleCheckOut(id){
+      const checkedIn = {
+        "billpaid": true
+      }
+
+    const request = new Requests();
+    request.patch(`/api/bookings/${id}`, checkedIn)
+
+
+    const index = this.findWithAttr(this.state.bookings, "bookingid", id);
+    const obj = this.state.bookings[index];
+    obj.billpaid = true;
+    const prevState = this.state.bookings;
+    const pastBooking = prevState.splice(index, 1)
+    const newState = prevState
+    this.setState({bookings: newState})
+    this.setState({pastBookings: [...pastBooking]})
+  }
+
 
   render(){
 
@@ -191,7 +211,11 @@ class HotelContainer extends Component {
         }}/>
 
         <Route exact path = "/checkinout" render ={() => {
-          return <CheckInOutContainer bookings={this.state.bookings} handleDeleteBooking = {this.handleDeleteBooking} handleCheckIn={this.handleCheckIn}/>
+          return <CheckInOutContainer bookings={this.state.bookings}
+           handleDeleteBooking = {this.handleDeleteBooking}
+           handleCheckIn={this.handleCheckIn}
+           handleCheckOut = {this.handleCheckOut}
+           />
         }} />
         </Switch>
         </div>

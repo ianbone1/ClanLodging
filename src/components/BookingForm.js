@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import Moment from 'moment'
-import './BookingForm.css'
+import './InputForm.css'
 
 class BookingForm extends Component{
   constructor(props){
@@ -143,7 +143,7 @@ class BookingForm extends Component{
 
               <div className="field">
                 <div className="inputLabel">
-                  <label for="guest">Select Guest </label>
+                  <label htmlFor="guest">Select Guest </label>
                 </div>
                 <div className="inputField">
                   <select id="guest" name="guest" defaultValue="Guest Name"onChange = {this.handleChange}>
@@ -155,7 +155,7 @@ class BookingForm extends Component{
 
               <div className="field">
                 <div className="inputLabel">
-                  <label for="checkinDate">Check In </label>
+                  <label htmlFor="checkinDate">Check In </label>
                 </div>
                 <div className="inputField">
                   <input id="checkinDate" name="checkinDate" type="date" min={Moment().format("YYYY-MM-DD")}onChange={this.handleChange}/>
@@ -164,7 +164,7 @@ class BookingForm extends Component{
 
               <div className="field">
                 <div className="inputLabel">
-                  <label for="checkoutDate">Check Out: </label>
+                  <label htmlFor="checkoutDate">Check Out: </label>
                 </div>
                 <div className="inputField">
                   <input id="checkoutDate" name="checkoutDate"type="date" min={this.state.checkinDate} onChange={this.handleChange}/>
@@ -173,7 +173,7 @@ class BookingForm extends Component{
 
               <div className="field">
                 <div className="inputLabel">
-                  <label for="partysize">Party Size </label>
+                  <label htmlFor="partysize">Party Size </label>
                 </div>
                 <div className="inputField">
                   <select id="partysize" name="partysize" onChange={this.handleChange}>
@@ -187,7 +187,7 @@ class BookingForm extends Component{
 
               <div className="field">
                 <div className="inputLabel">
-                  <label for="roomtype">Room Type </label>
+                  <label htmlFor="roomtype">Room Type </label>
                 </div>
                 <div className="inputField">
                   <select id="roomtype" name="roomtype" defaultValue={this.state.roomType} onChange={this.handleChange}>
@@ -198,7 +198,7 @@ class BookingForm extends Component{
 
               <div className="field">
                 <div className="inputLabel">
-                  <label for="room">Room # </label>
+                  <label htmlFor="room">Room # </label>
                 </div>
                 <div className="inputField">
                   <select id="room" name="room" defaultValue="1" onChange = {this.handleChange}>

@@ -1,13 +1,11 @@
-.BookingForm{
+.Form{
   display:flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction:row;
   width:40%;
   margin-left:30%;
   margin-right:30%;
   border: 2px solid silver;
-  
-
-  /* background-color: pink; */
+  margin-bottom:10px;
 }

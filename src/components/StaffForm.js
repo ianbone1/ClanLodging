@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-=======
 
-
->>>>>>> develop
 import React, {Component} from 'react';
 import Requests from '../helpers/Requests.js'
 

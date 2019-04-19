@@ -93,11 +93,15 @@ class HotelContainer extends Component {
     this.setState({bookings: prevState})
   }
 
-  handleSubmitBooking(booking){
-    console.log("About to submit(PUT) this booking:", booking)
-
+  handleSubmitBooking(bookingDB, bookingLocal){
+    console.log("About to submit(PUT) this booking:", bookingDB)
     const request = new Requests();
-    request.post('/api/bookings', booking)
+    request.post('/api/bookings', bookingDB)
+    let newBookings=this.state.bookings;
+    console.log("New Bookings:" , newBookings)
+    console.log("New Local Booking:", bookingLocal)
+    newBookings.push(bookingLocal);
+    this.setState({bookings: newBookings})
   }
 
   handleEditBooking(booking){

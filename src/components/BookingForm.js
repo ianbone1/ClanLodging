@@ -12,7 +12,7 @@ class BookingForm extends Component{
       guest: null,
       room: null,
       bookingdates:[],
-      partysize: '',
+      partysize: 1,
       checkedin: false,
       billpaid: false,
       roomtype: "SINGLE",
@@ -27,6 +27,9 @@ class BookingForm extends Component{
 
   handleChange(event){
     this.setState({[event.target.name]: event.target.value})
+    console.log("Event Target: ",event.target)
+    console.log("Event Target Name", event.target.name)
+    console.log("Event Target Value: ", event.target.value)
   }
 
   buildDateList(startDate, endDate){
@@ -45,16 +48,28 @@ class BookingForm extends Component{
     event.preventDefault();
     const bookingDateList = this.buildDateList(this.state.checkinDate, this.state.checkoutDate)
     this.setState({bookingdates: bookingDateList})
-    const booking = {
-      "guest": this.state.guest,
-      "room": this.state.room,
+    console.log("state.guest:", this.state.guest)
+    console.log("parseInt of guest:", parseInt(this.state.guest))
+    const bookingDB = {
+      "guest": this.props.guests[parseInt(this.state.guest)]._links.self.href,
+      "room": this.props.rooms[parseInt(this.state.room)]._links.self.href,
       "bookingdates": bookingDateList,
       "partysize": this.state.partysize,
       "checkedin": this.state.checkedin,
-      "billpaid": this.state.billpaid}
+      "billpaid": this.state.billpaid,
+      "roomtype": this.state.roomtype}
 
-      console.log("The Booking: ", booking)
-      this.props.handleSubmitBooking(booking)
+      const bookingLocal = {
+        "guest": this.props.guests[parseInt(this.state.guest)],
+        "room": this.props.rooms[parseInt(this.state.room)],
+        "bookingdates": bookingDateList,
+        "partysize": this.state.partysize,
+        "checkedin": this.state.checkedin,
+        "billpaid": this.state.billpaid,
+        "roomtype": this.state.roomtype}
+        console.log("The BookingDB: ", bookingDB)
+        console.log("The BookingLocal: ", bookingLocal)
+      this.props.handleSubmitBooking(bookingDB, bookingLocal)
       this.setState({redirectMe: true})
 
     }
@@ -109,13 +124,13 @@ class BookingForm extends Component{
           }
           //finally build the options list for the drop down
           let roomOptions = keepFiltered.map((room, index) => {
-            return <option key={index} value={room._links.self.href}>Number: {room.roomnumber} {room.roomtype} £{room.rate}</option>
+            return <option key={index} value={index}>Number: {room.roomnumber} {room.roomtype} £{room.rate}</option>
           })
           return roomOptions
         }
 
       const guests = this.props.guests.map((guest, index) => {
-        return <option key={index} value={guest._links.self.href}>{guest.firstname} {guest.lastname}</option>
+        return <option key={index} value={index}>{guest.firstname} {guest.lastname}</option>
       })
 
       const roomtypes = () =>{
@@ -146,7 +161,7 @@ class BookingForm extends Component{
               <div className="formField">
                 <label htmlFor="guest">Select Guest </label>
                 <select className="formControl" id="guest" name="guest" defaultValue="Guest Name"onChange = {this.handleChange}>
-                  <option disabled value="Guest Name">Guest Name</option>
+                <option disabled value="Guest Name">Guest Name</option>
                   {guests}
                 </select>
               </div>
@@ -173,14 +188,15 @@ class BookingForm extends Component{
 
               <div className="formField">
                 <label htmlFor="roomtype">Room Type </label>
-                <select className="formControl" id="roomtype" name="roomtype" defaultValue={this.state.roomType} onChange={this.handleChange}>
+                <select className="formControl" id="roomtype" name="roomtype" defaultValue={this.state.roomtype} onChange={this.handleChange}>
                   {roomtypes()}
                 </select>
               </div>
 
               <div className="formField">
                 <label htmlFor="room">Room # </label>
-                <select className="formControl" id="room" name="room" defaultValue="1" onChange = {this.handleChange}>
+                <select className="formControl" id="room" name="room" defaultValue="Pick Room" onChange = {this.handleChange}>
+                  <option disabled value="Pick Room">Pick Room</option>
                   {rooms()}
                 </select>
               </div>

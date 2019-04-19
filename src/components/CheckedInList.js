@@ -1,5 +1,6 @@
 import React from 'react';
 import CheckOut from './CheckOut';
+import './InputForm.css';
 
 const CheckedInList = (props) =>{
   // Filters and removes checked in bookings
@@ -14,8 +15,12 @@ const CheckedInList = (props) =>{
 
   return(
     <div>
-      <h3>Checked In List</h3>
-      {bookingsNode}
+      <div className="formHeader">
+        <h3>Checked In List</h3>
+      </div>
+      <div className="formBody">
+        {bookingsNode}
+      </div>
     </div>
   )
 

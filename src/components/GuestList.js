@@ -1,6 +1,6 @@
 import React from 'react';
 import Guest from './Guest';
-import '../containers/FormContainer.css'
+import './InputForm.css';
 
 
 const GuestList = (props) => {
@@ -15,9 +15,13 @@ const guestNodes = props.guests.map((guest, index) =>{
 })
 
   return (
-    <div className="guest-list">
-    <h3>Guest Directory</h3>
-    {guestNodes}
+    <div>
+      <div  className="formHeader">
+        <h3>Guest Directory</h3>
+      </div>
+      <div className="formBody">
+        {guestNodes}
+      </div>
     </div>
   );
 

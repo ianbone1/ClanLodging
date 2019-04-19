@@ -1,6 +1,6 @@
 import React from 'react';
 import Staff from './Staff';
-import '../containers/FormContainer.css'
+import './InputForm.css';
 
 const StaffList = (props) => {
 
@@ -15,10 +15,14 @@ const staffNodes = props.staffs.map((staff, index) =>{
 })
 
   return (
-    <ul>
-    <h4>Staff List</h4>
-    {staffNodes}
-    </ul>
+    <div>
+      <div className="formHeader">
+        <h3>Staff List</h3>
+        </div>
+        <div className="formBody">
+        {staffNodes}
+      </div>
+    </div>
   );
 
 

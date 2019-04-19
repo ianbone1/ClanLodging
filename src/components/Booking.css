@@ -1,0 +1,24 @@
+.dataBox{
+  padding: 8px;
+  width: 45%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  border: 1px solid #c5c5c5c7;
+  margin: 5px;
+  margin-left: 8px;
+  background: #000000c4;
+  border-radius: 12px;
+}
+
+.dataDisplay{
+  width: 100%;
+}
+
+.buttonControl {
+  width: 100px;
+  height: 25px;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 0 1px 0 1px;
+}

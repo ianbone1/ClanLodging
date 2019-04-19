@@ -1,23 +1,26 @@
 import React from 'react';
-import BookingCheckIn from './BookingCheckIn'
+import BookingCheckIn from './BookingCheckIn';
+import './InputForm.css';
 
 const NotCheckedInList = (props) =>{
   // Filters and removes checked in bookings
   const notCheckedIn = props.bookings.filter((booking) => booking.checkedin === false)
   const bookingsNode = notCheckedIn.map((booking, index) => {
     return (
-      <li key = {index}>
-        <div>
+        <React.Fragment key={index}>
           <BookingCheckIn booking={booking} handleDeleteBooking={props.handleDeleteBooking} handleCheckIn={props.handleCheckIn}/>
-        </div>
-      </li>
+        </React.Fragment>
     )
   })
 
   return(
     <div>
-    <h3>Not Checked In List</h3>
-    {bookingsNode}
+      <div className="formHeader">
+        <h3>Upcoming Checkins</h3>
+      </div>
+      <div className="formBody">
+        {bookingsNode}
+      </div>
     </div>
   )
 

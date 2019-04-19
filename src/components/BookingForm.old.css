@@ -1,10 +1,10 @@
-.databox{
+.inputForm{
   display:inline-flex;
   flex-direction: column;
   width: 100%;
   height: auto;
   opacity: 0.9;
-  background-color: #333;
+  /* background-color: blue; */
 }
 
 .field{
@@ -14,7 +14,7 @@
   letter-spacing: 1px;
 }
 
-.dataLabel{
+.inputLabel{
   padding: 5px 5px;
   display:flex;
   align-items: flex-end;
@@ -23,7 +23,7 @@
   opacity: 0.9;
 }
 
-.dataField{
+.inputField{
   display: flex;
   align-items: flex-start;
   width: 50%;

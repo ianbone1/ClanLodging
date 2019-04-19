@@ -1,7 +1,5 @@
 import React from 'react';
-
-
-
+import './Booking.css';
 
 const CheckOut = (props) => {
 
@@ -10,14 +8,38 @@ const CheckOut = (props) => {
    const nights = props.booking.bookingdates;
    const stay = nights.length-1
    const bill = rate * stay;
-    return <div>
-            <h4>{props.booking.guest.firstname} {props.booking.guest.lastname}</h4>
-            <p>Checked in on: {props.booking.bookingdates[0]}</p>
-            <p>Checkout on: {props.booking.bookingdates.slice(-1)[0]}</p>
-            <p>Room: {props.booking.room.roomnumber}</p>
-            <p>Bill: £{bill}</p>
-            <button onClick = {() => { props.handleCheckOut(props.booking.bookingid) }}>Check Out</button>
+    return (
+      <div className="dataBox">
+
+          <div className="dataDisplay">
+            Name : {props.booking.guest.firstname} {props.booking.guest.lastname}
           </div>
+
+          <div className="dataDisplay">
+            Room # : {props.booking.room.roomnumber} {props.booking.room.roomtype}
+          </div>
+
+          <div className="dataDisplay">
+            Chack-in Date : {props.booking.bookingdates[0]}
+          </div>
+
+          <div className="dataDisplay">
+            Check Our : {props.booking.bookingdates.slice(-1)[0]}
+          </div>
+
+          <div className="dataDisplay">
+            Party Size : {props.booking.partysize}
+          </div>
+
+          <div className="dataDisplay">
+            Bill: £{bill}
+          </div>
+
+        <div className="dataDisplay">
+        <button className="buttonControl" onClick = {() => { props.handleCheckOut(props.booking.bookingid) }}>Check Out</button>
+        </div>
+      </div>
+    )
   }
 }
 

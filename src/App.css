@@ -1,4 +1,13 @@
 .App {
   text-align: center;
   font-family: 'Raleway', sans-serif;
+  color: silver;
+}
+
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 15px;
 }

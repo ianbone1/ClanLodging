@@ -137,77 +137,56 @@ class BookingForm extends Component{
 
       return(
         <>
+        <div className="formHeader">
           <h3>Create new Booking</h3>
-          <div className="inputForm">
-            <form onSubmit={this.prepSubmit}>
+          </div>
+          <div className="formBody">
+            <form className="form" onSubmit={this.prepSubmit}>
 
-              <div className="field">
-                <div className="inputLabel">
-                  <label htmlFor="guest">Select Guest </label>
-                </div>
-                <div className="inputField">
-                  <select id="guest" name="guest" defaultValue="Guest Name"onChange = {this.handleChange}>
-                    <option disabled value="Guest Name">Guest Name</option>
-                    {guests}
-                  </select>
-                </div>
+              <div className="formField">
+                <label htmlFor="guest">Select Guest </label>
+                <select className="formControl" id="guest" name="guest" defaultValue="Guest Name"onChange = {this.handleChange}>
+                  <option disabled value="Guest Name">Guest Name</option>
+                  {guests}
+                </select>
               </div>
 
-              <div className="field">
-                <div className="inputLabel">
-                  <label htmlFor="checkinDate">Check In </label>
-                </div>
-                <div className="inputField">
-                  <input id="checkinDate" name="checkinDate" type="date" min={Moment().format("YYYY-MM-DD")}onChange={this.handleChange}/>
-                </div>
+              <div className="formField">
+                <label htmlFor="checkinDate">Check In </label>
+                <input className="formControl" id="checkinDate" name="checkinDate" type="date" min={Moment().format("YYYY-MM-DD")}onChange={this.handleChange}/>
               </div>
 
-              <div className="field">
-                <div className="inputLabel">
-                  <label htmlFor="checkoutDate">Check Out: </label>
-                </div>
-                <div className="inputField">
-                  <input id="checkoutDate" name="checkoutDate"type="date" min={this.state.checkinDate} onChange={this.handleChange}/>
-                </div>
+              <div className="formField">
+                <label htmlFor="checkoutDate">Check Out: </label>
+                <input className="formControl" id="checkoutDate" name="checkoutDate"type="date" min={this.state.checkinDate} onChange={this.handleChange}/>
               </div>
 
-              <div className="field">
-                <div className="inputLabel">
-                  <label htmlFor="partysize">Party Size </label>
-                </div>
-                <div className="inputField">
-                  <select id="partysize" name="partysize" onChange={this.handleChange}>
-                    <option key="1" value="1">1</option>
-                    <option key="2" value="2">2</option>
-                    <option key="3" value="3">3</option>
-                    <option key="4" value="4">4</option>
-                  </select>
-                </div>
+              <div className="formField">
+                <label htmlFor="partysize">Party Size </label>
+                <select className="formControl" id="partysize" name="partysize" onChange={this.handleChange}>
+                  <option key="1" value="1">1</option>
+                  <option key="2" value="2">2</option>
+                  <option key="3" value="3">3</option>
+                  <option key="4" value="4">4</option>
+                </select>
               </div>
 
-              <div className="field">
-                <div className="inputLabel">
-                  <label htmlFor="roomtype">Room Type </label>
-                </div>
-                <div className="inputField">
-                  <select id="roomtype" name="roomtype" defaultValue={this.state.roomType} onChange={this.handleChange}>
-                    {roomtypes()}
-                  </select>
-                </div>
+              <div className="formField">
+                <label htmlFor="roomtype">Room Type </label>
+                <select className="formControl" id="roomtype" name="roomtype" defaultValue={this.state.roomType} onChange={this.handleChange}>
+                  {roomtypes()}
+                </select>
               </div>
 
-              <div className="field">
-                <div className="inputLabel">
-                  <label htmlFor="room">Room # </label>
-                </div>
-                <div className="inputField">
-                  <select id="room" name="room" defaultValue="1" onChange = {this.handleChange}>
+              <div className="formField">
+                <label htmlFor="room">Room # </label>
+                <select className="formControl" id="room" name="room" defaultValue="1" onChange = {this.handleChange}>
                   {rooms()}
-                  </select>
-                </div>
+                </select>
               </div>
-              <div className="field">
-                <button type="submit">Create Booking</button>
+
+              <div className="buttonField">
+                <button className="buttonControl" type="submit">Create Booking</button>
               </div>
             </form>
           </div>

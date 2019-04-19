@@ -71,18 +71,15 @@ class HotelContainer extends Component {
     const checkedIn = {
       "checkedin": true
     }
-
-  const request = new Requests();
-  request.patch(`/api/bookings/${booking}`, checkedIn)
-
-
-  const index = this.findWithAttr(this.state.bookings, "bookingid", booking);
-  const obj = this.state.bookings[index];
-  obj.checkedin = true;
-  const prevState = this.state.bookings;
-  prevState.splice(index, 1)
-  const newState = [...prevState, obj]
-  this.setState({bookings: newState})
+   const request = new Requests();
+   request.patch(`/api/bookings/${booking}`, checkedIn)
+   const index = this.findWithAttr(this.state.bookings, "bookingid", booking);
+   const obj = this.state.bookings[index];
+   obj.checkedin = true;
+   const prevState = this.state.bookings;
+   prevState.splice(index, 1)
+   const newState = [...prevState, obj]
+   this.setState({bookings: newState})
   }
 
   handleDeleteBooking(id){
@@ -170,7 +167,7 @@ class HotelContainer extends Component {
         <div className="PageHeader">
         ClanLodging
         </div>
-        <div className="NavBar">
+        <div>
           <NavBar />
         </div>
 

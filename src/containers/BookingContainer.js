@@ -14,6 +14,7 @@ class BookingContainer extends Component{
         <div className="BookingFormContainer">
           <BookingForm rooms={this.props.rooms} guests = {this.props.guests} handleSubmitBooking={this.props.handleSubmitBooking}/>
         </div>
+        <div className="panelDivider"></div>
         <div className="BookingListContainer">
           <div id="booking__list">
           <BookingList bookings={this.props.bookings} guests={this.props.guests}

@@ -4,6 +4,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
+  padding-bottom: 15px;
 }
 
 .BookingContainerHeader{
@@ -12,11 +13,17 @@
 }
 
 .BookingFormContainer{
-  width: 50%;
+  width: 39%;
   height: 100%;
 }
 
 .BookingListContainer{
-  width: 50%;
+  width: 60%;
   height: 100%;
+}
+
+.panelDivider{
+  margin-top: 35px;
+  height: 400px;
+  border-right: 1px solid grey;
 }

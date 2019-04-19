@@ -8,9 +8,9 @@ const BookingList = (props) => {
   const notCheckedIn = props.bookings.filter((booking) => booking.checkedin === false)
   const bookingsNode = notCheckedIn.map((booking, index) =>  {
     return (
-      <div key={index}>
+      <React.Fragment key={index}>
           <Booking booking={booking} handleDeleteBooking = {props.handleDeleteBooking} handleEditBooking = {props.handleEditBooking}/>
-      </div>
+      </React.Fragment>
     )
   })
 
@@ -19,7 +19,7 @@ const BookingList = (props) => {
     return(
       <div>
         <div className="formHeader">
-        <h4>Upcoming Bookings</h4>
+        <h3>Upcoming Bookings</h3>
         </div>
         <div className="formBody">
         {bookingsNode}

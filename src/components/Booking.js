@@ -1,61 +1,37 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import './Booking.css';
 
 const Booking = (props) =>{
 
   const url = "/edit"
 
     return(
-      <div className="databox">
+      <div className="dataBox">
 
-        <div className="field">
-          <div className="dataLabel">
-            Name :
+          <div className="dataDisplay">
+            Name : {props.booking.guest.firstname} {props.booking.guest.lastname}
           </div>
-          <div className="dataField">
-            {props.booking.guest.firstname} {props.booking.guest.lastname}
-          </div>
-        </div>
 
-        <div className="field">
-          <div className="dataLabel">
-            Room # :
+          <div className="dataDisplay">
+            Room # : {props.booking.room.roomnumber} {props.booking.room.roomtype}
           </div>
-          <div className="dataField">
-              {props.booking.room.roomnumber} {props.booking.room.roomtype}
-          </div>
-        </div>
 
-        <div className="field">
-          <div className="dataLabel">
-            Chack-in Date :
+          <div className="dataDisplay">
+            Chack-in Date : {props.booking.bookingdates[0]}
           </div>
-          <div className="dataField">
-            {props.booking.bookingdates[0]}
-          </div>
-        </div>
 
-        <div className="field">
-          <div className="dataLabel">
-            Check Our :
+          <div className="dataDisplay">
+            Check Our : {props.booking.bookingdates.slice(-1)[0]}
           </div>
-          <div className="dataField">
-            {props.booking.bookingdates.slice(-1)[0]}
-          </div>
-        </div>
 
-        <div className="field">
-          <div className="dataLabel">
-            Party Size :
+          <div className="dataDisplay">
+            Party Size : {props.booking.partysize}
           </div>
-          <div className="dataField">
-            {props.booking.partysize}
-          </div>
-        </div>
 
-        <div className="field">
-          <Link to={url}><button onClick = {() => props.handleEditBooking(props.booking)}>Edit</button></Link>
-          <button onClick = { () => { if (window.confirm('Are you sure you wish to delete this item?')) props.handleDeleteBooking(props.booking.bookingid)  } } >Cancel Booking</button>
+        <div className="dataDisplay">
+          <Link to={url}><button className="buttonControl" onClick = {() => props.handleEditBooking(props.booking)}>Edit</button></Link>
+          <button className="buttonControl" onClick = { () => { if (window.confirm('Are you sure you wish to delete this item?')) props.handleDeleteBooking(props.booking.bookingid)  } } >Cancel Booking</button>
         </div>
       </div>
     )

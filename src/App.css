@@ -1,11 +1,17 @@
 .App {
   text-align: center;
   font-family: 'Raleway', sans-serif;
+  color: silver;
+}
+
+h1{
+  color: #616161;
+  margin-top: 10%;
 }
 
 select {
   -webkit-appearance: none;
--moz-appearance: none;
-appearance: none;
-padding: 15px;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 15px;
 }

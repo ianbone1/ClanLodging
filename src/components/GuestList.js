@@ -16,12 +16,12 @@ const guestNodes = props.guests.map((guest, index) =>{
 
   return (
     <div>
-    <div  className="formHeader">
-    <h3>Guest Directory</h3>
-    </div>
-    <div className="formBody">
-    {guestNodes}
-    </div>
+      <div  className="formHeader">
+        <h3>Guest Directory</h3>
+      </div>
+      <div className="formBody">
+        {guestNodes}
+      </div>
     </div>
   );
 

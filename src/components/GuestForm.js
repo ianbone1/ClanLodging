@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Requests from '../helpers/Requests.js'
-import './GuestForm.css'
+import './GuestForm.css';
 
 class GuestForm extends Component {
   constructor(props){

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GuestForm from '../components/GuestForm'
 import GuestList from '../components/GuestList'
-import "./BookingStyle.css"
+import "./BookingStyle.css";
 
 
 class GuestContainer extends Component {

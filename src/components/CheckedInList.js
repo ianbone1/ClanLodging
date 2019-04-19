@@ -6,11 +6,9 @@ const CheckedInList = (props) =>{
   const checkedIn = props.bookings.filter((booking) => booking.checkedin === true && booking.billpaid === false)
   const bookingsNode = checkedIn.map((booking, index) => {
     return (
-      <li key = {index}>
-        <div>
+        <React.Fragment key={index}>
           <CheckOut booking={booking} handleCheckOut = {props.handleCheckOut}/>
-        </div>
-      </li>
+        </React.Fragment>
     )
   })
 

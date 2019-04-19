@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Requests from '../helpers/Requests.js'
-import './InputForm.css'
+import './GuestForm.css'
 
 class GuestForm extends Component {
   constructor(props){
@@ -45,79 +45,54 @@ class GuestForm extends Component {
 
     return (
       <>
+      <div className="formHeader">
       <h3>Create Guest</h3>
-      <div className="inputForm">
-        <form onSubmit ={this.handleSubmit}>
-
-          <div className="field">
-            <div className="inputLabel">
-              <label htmlFor="firstname">First Name </label>
-            </div>
-            <div className="inputField">
-              <input  required type="text" id="firstname" name = "firstname" placeholder ="First Name" onChange= {this.handlechange}/>
-            </div>
-          </div>
-
-          <div className="field">
-            <div className="inputLabel">
-              <label htmlFor="lastname">Last Name </label>
-            </div>
-            <div className="inputField">
-              <input type="text" id="lastname" name = "lastname" placeholder ="Last Name" onChange= {this.handlechange}/>
-            </div>
-          </div>
-
-          <div className="field">
-            <div className="inputLabel">
-              <label htmlFor="addressline1">Address </label>
-            </div>
-            <div className="inputField">
-              <input type ="text" id="addressline1" name="addressline1" placeholder ="Address Line1" onChange= {this.handlechange}/>
-            </div>
-          </div>
-
-          <div className="field">
-            <div className="inputLabel">
-              <label htmlFor="town">Town </label>
-            </div>
-            <div className="inputField">
-              <input type ="text" id="town" name="town" placeholder ="Town" onChange= {this.handlechange}/>
-            </div>
-          </div>
-
-          <div className="field">
-            <div className="inputLabel">
-              <label htmlFor="postcode">Post Code </label>
-            </div>
-            <div className="inputField">
-              <input id="postcode" type ="text" name="postcode" placeholder ="Postcode" onChange= {this.handlechange}/>
-            </div>
-          </div>
-
-          <div className="field">
-            <div className="inputLabel">
-              <label htmlFor="email">Email </label>
-            </div>
-            <div className="inputField">
-              <input id="email" type ="email" name="email" placeholder ="Email" onChange= {this.handlechange}/>
-            </div>
-          </div>
-
-          <div className="field">
-            <div className="inputLabel">
-              <label htmlFor="phone">Phone </label>
-            </div>
-            <div className="inputField">
-              <input id="phone" type ="number" name="phone" placeholder ="Phone" onChange= {this.handlechange}/>
-            </div>
-          </div>
-
-          <div className="field">
-            <button type="submit" onSubmit = {this.handleSubmit}>Save</button>
-          </div>
-      </form>
       </div>
+      <div className="formBody">
+        <form className="form" onSubmit ={this.handleSubmit}>
 
+            <div className="formField">
+              <label htmlFor="firstname">First Name </label>
+              <input className="formField"  required type="text" id="firstname" name = "firstname" placeholder ="First Name" onChange= {this.handlechange}/>
+            </div>
+
+
+            <div className="formField">
+              <label  htmlFor="lastname">Last Name </label>
+              <input className="formField"  type="text" id="lastname" name = "lastname" placeholder ="Last Name" onChange= {this.handlechange}/>
+            </div>
+
+
+            <div className="formField">
+              <label htmlFor="addressline1">Address </label>
+              <input className="formField" type ="text" id="addressline1" name="addressline1" placeholder ="Address Line1" onChange= {this.handlechange}/>
+            </div>
+
+            <div className="formField">
+              <label htmlFor="town">Town </label>
+              <input className="formField" type ="text" id="town" name="town" placeholder ="Town" onChange= {this.handlechange}/>
+            </div>
+
+          <div className="formField">
+              <label htmlFor="postcode">Post Code </label>
+              <input className="formField" id="postcode" type ="text" name="postcode" placeholder ="Postcode" onChange= {this.handlechange}/>
+          </div>
+
+          <div className="formField">
+              <label htmlFor="email">Email </label>
+              <input className="formField" id="email" type ="email" name="email" placeholder ="Email" onChange= {this.handlechange}/>
+          </div>
+
+          <div className="formField">
+              <label htmlFor="phone">Phone </label>
+              <input className="formField" id="phone" type ="number" name="phone" placeholder ="Phone" onChange= {this.handlechange}/>
+          </div>
+
+          <div className="buttonField">
+            <button className="buttonControl" type="submit" onSubmit = {this.handleSubmit}>Save</button>
+          </div>
+        </form>
+      </div>
       </>
     );
   }

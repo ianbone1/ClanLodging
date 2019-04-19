@@ -1,0 +1,98 @@
+.formHeader{
+  height: 30px;
+  width: 100%;
+}
+
+.formBody{
+  height: 450px;
+  width: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.formField {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 3px 0 3px 0;
+}
+
+
+
+.formField label {
+  width: 20%;
+}
+
+.formControl {
+  width: 50%;
+  padding: 3px;
+}
+
+
+.form{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap
+}
+
+.buttonField{
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 3px;
+}
+
+.buttonControl {
+  width: 120px;
+  height: 35px;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Nothing important here */

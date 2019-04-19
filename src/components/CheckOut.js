@@ -1,8 +1,5 @@
 import React from 'react';
 
-
-
-
 const CheckOut = (props) => {
 
  if (!props.booking.checkedIn) {

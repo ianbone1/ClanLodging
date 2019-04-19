@@ -142,6 +142,7 @@ class BookingForm extends Component{
           </div>
           <div className="formBody">
             <form className="form" onSubmit={this.prepSubmit}>
+
               <div className="formField">
                 <label htmlFor="guest">Select Guest </label>
                 <select className="formControl" id="guest" name="guest" defaultValue="Guest Name"onChange = {this.handleChange}>

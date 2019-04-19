@@ -1,4 +1,5 @@
 .dataBox{
+  padding: 8px;
   width: 45%;
   display: flex;
   flex-wrap: wrap;

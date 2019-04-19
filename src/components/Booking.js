@@ -7,8 +7,8 @@ const Booking = (props) =>{
   const url = "/edit"
 
     return(
-      <div className="dataBox">
 
+      <div className="dataBox">
           <div className="dataDisplay">
             Name : {props.booking.guest.firstname} {props.booking.guest.lastname}
           </div>
@@ -34,6 +34,7 @@ const Booking = (props) =>{
           <button className="buttonControl" onClick = { () => { if (window.confirm('Are you sure you wish to delete this item?')) props.handleDeleteBooking(props.booking.bookingid)  } } >Cancel Booking</button>
         </div>
       </div>
+
     )
 }
 

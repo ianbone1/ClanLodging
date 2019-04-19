@@ -6,7 +6,7 @@ const Guest =(props) => {
    <div className="dataBox">
 
    <div className="dataDisplay">
-      {props.guest.firstname} {props.lastname}
+      {props.guest.firstname} {props.guest.lastname}
    </div>
 
    <div className="dataDisplay">

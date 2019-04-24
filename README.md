@@ -161,3 +161,12 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 
 # ScreenShots
+
+### Main bookings screen
+<img width="1092" alt="Screenshot 2019-04-24 at 10 09 58" src="https://user-images.githubusercontent.com/17381454/56647469-6c908f80-6679-11e9-9030-b1560121b785.png">
+
+### Checkin and OutScreen, dynamically updates as guests are checked in and out
+<img width="1254" alt="Screenshot 2019-04-24 at 10 10 34" src="https://user-images.githubusercontent.com/17381454/56647477-71554380-6679-11e9-8bf2-eda5627231e3.png">
+
+### Prepopulated booking edit screen
+<img width="862" alt="Screenshot 2019-04-24 at 10 13 50" src="https://user-images.githubusercontent.com/17381454/56647654-b6797580-6679-11e9-999e-97ad99573c6a.png">

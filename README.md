@@ -118,13 +118,25 @@ Clean code of console logs, organise files into folders. Work on extensions
 
 
 
-
+##
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+## To start app
+
+### `npm install` 
+
+ To install dependencies
+
+### `Launch API/DB`
+ 
+ Initiate the DB with command `createdb hotelmanager3000 -U Postgres`
+ Start API by running the HotelserverApplication found in the hotelserver folder then src/main/java/com.codeclan.hotelserver
+ 
 
 ### `npm start`
 
@@ -134,6 +146,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
+## To deploy
 
 ### `npm run build`
 
@@ -145,3 +158,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+
+
+# ScreenShots
